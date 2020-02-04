@@ -1,0 +1,71 @@
+plugins {
+    id 'java'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.xerial:sqlite-jdbc:3.28.0'
+    //compile 'org.apache.commons:commons-dbcp2:2.7.0' //for db connection pool
+    compile 'com.sparkjava:spark-core:2.9.1'
+    compile 'com.sparkjava:spark-template-velocity:2.7.1'
+    compile 'org.slf4j:slf4j-simple:1.7.21'
+
+    testCompile 'junit:junit:4.12'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+
+//--- CUSTOM GRADING SUPPORT ---//
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
+tasks.withType(Test) { testTask ->
+    def finalGrade = 0
+    def totalPoints = 0
+
+    testLogging {
+        // set options for log level LIFECYCLE
+        events = [TestLogEvent.FAILED,
+                  TestLogEvent.PASSED,
+//                TestLogEvent.STANDARD_OUT,
+                  TestLogEvent.SKIPPED]
+    }
+
+    // go through all test and retrieve the fake tasks(with the grade), then extract the results
+    afterTest { descriptor, result ->
+        if (result.resultType == TestResult.ResultType.SKIPPED) {
+            def gradesString = descriptor.name =~ ~/(\d+)\/(\d+)/
+            if (gradesString.find()) {
+                def success = gradesString.group(1)
+                def total = gradesString.group(2)
+                finalGrade += success.isInteger() ? success as Integer : 0
+                totalPoints += total.isInteger() ? total as Integer : 0
+            }
+        }
+    }
+
+    // present a nice interface with the results
+    afterSuite { descriptor, result ->
+        if (!descriptor.parent) { // will match the outermost suite
+            def output = " Final Grade: $finalGrade/$totalPoints | " +
+                    "Results: ${result.resultType} " +
+                    "(${result.testCount} tests, " +
+                    "${result.successfulTestCount} successes, " +
+                    "${result.failedTestCount} failures, " +
+                    "${result.skippedTestCount} skipped)"
+            def startItem = '|  ', endItem = '   |'
+            def repeatLength = startItem.length() + output.length() + endItem.length()
+            def header = ('-' * repeatLength)
+            println("\n$header\n$startItem$output$endItem\n$header")
+        }
+    }
+}
+// force re-run of the test task each time
+test.dependsOn(cleanTest)

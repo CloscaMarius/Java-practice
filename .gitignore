@@ -1,0 +1,10 @@
+clasa/
+curs/
+
+.idea/
+out/
+.gradle/
+build/
+
+*.db
+*.db-journal
