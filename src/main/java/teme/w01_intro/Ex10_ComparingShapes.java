@@ -6,24 +6,24 @@ class Ex10_ComparingShapes {
 
 
     static double circleArea(double radius) {
-        //todo: your code here!
-        return 0;
+        //A = PI * R^2
+        return PI * radius * radius;
     }
 
     static double circleLength(double radius) {
-        //todo: your code here!
-        return 0;
+        //L = 2 * PI * R
+        return 2 * PI * radius;
     }
 
 
     static double squareArea(double side) {
-        //todo: your code here!
-        return 0;
+
+        return side * side;
     }
 
     static double squarePerimeter(double side) {
-        //todo: your code here!
-        return 0;
+
+        return 4 * side;
     }
 
 
@@ -35,8 +35,8 @@ class Ex10_ComparingShapes {
      * @return "square" if the square shape has the bigger area, or "circle" otherwise
      */
     static String whichHasGreaterArea(double radius, double side) {
-        //todo: your code here!
-        return "?";
+
+        return squareArea(side) > circleArea(radius) ? "square" : "circle";
     }
 
     /**
@@ -47,8 +47,8 @@ class Ex10_ComparingShapes {
      * @return "square" if the square shape has the bigger perimeter, or "circle" otherwise
      */
     static String whichHasGreaterPerimeter(double radius, double side) {
-        //todo: your code here!
-        return "?";
+
+        return squarePerimeter(side) > circleLength(radius) ? "square" : "circle";
     }
 
     //--- MAIN, just for manual tests ---//

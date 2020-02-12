@@ -7,43 +7,43 @@ class Ex0_WarmupIntro {
     }
 
     static double squareValue(double x) {
-        return -1; //TODO: replace it with your code!
+        return x * x;
     }
 
     static String joinStrings(String s1, String s2) {
-        return null; //TODO: replace it with your code!
+        return s1 + s2;
     }
 
     static int lengthOf(String s) {
-        return 0; //TODO: replace it with your code!
+        return s.length();
     }
 
     static int truncate(double x) {
-        return -1; //TODO: replace it with your code!
+        return (int) x;
     }
 
     static boolean isInInterval(int x, int min, int max) {
-        return false; //TODO: replace it with your code!
+        return (x <= max) && (x >= min);
     }
 
     static boolean sameLength(String s1, String s2) {
-        return false; //TODO: replace it with your code!
+        return s1.length() == s2.length();
     }
 
     static boolean atLeastOneTrue(boolean a, boolean b, boolean c) {
-        return false; //TODO: replace it with your code!
+        return a || b || c;
     }
 
     static boolean allTrue(boolean a, boolean b, boolean c) {
-        return false; //TODO: replace it with your code!
+        return a && b && c;
     }
 
     static boolean noneTrue(boolean a, boolean b, boolean c) {
-        return false; //TODO: replace it with your code!
+        return !a && !b && !c;
     }
 
     static boolean exactlyTwoTrue(boolean a, boolean b, boolean c) {
-        return false; //TODO: replace it with your code!
+        return (a && b && !c) || (a && !b && c) || (!a && b && c);
     }
 
     /**

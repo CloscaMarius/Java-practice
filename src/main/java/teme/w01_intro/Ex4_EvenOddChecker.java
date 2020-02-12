@@ -9,9 +9,13 @@ class Ex4_EvenOddChecker {
      * @return 0 if number is even, 1 if it's odd, or -1 if outside valid interval
      */
     static int convertEvenOddToZeroOne(int n) {
-        //todo: write your code here
-        return -2;
+        return validNumber(n) ? n % 2 : -1;
     }
+
+    static boolean validNumber(int n) {
+        return n >= 1 && n <= 1000;
+    }
+
 
     /**
      * Checks a given integer number if is even or odd
@@ -20,8 +24,8 @@ class Ex4_EvenOddChecker {
      * @return "even" if number is even, "odd" if it's odd, or "invalid" if outside valid interval
      */
     static String convertEvenOddToString(int n) {
-        //todo: write your code here
-        return "?";
+
+        return validNumber(n) ? (n % 2 == 0) ? "even" : "odd" : "invalid";
     }
 
     //manual tests

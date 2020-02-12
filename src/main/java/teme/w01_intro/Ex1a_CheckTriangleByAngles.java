@@ -17,9 +17,11 @@ class Ex1a_CheckTriangleByAngles {
      */
     static boolean canFormValidTriangle(int angle1, int angle2, int angle3) {
 
-        //TODO: write your logic here, so it returns true/false as needed
+        return anglesPositive(angle1, angle2, angle3) && (angle1 + angle2 + angle3 == 180); //<--- REPLACE THIS WITH YOUR CODE!
+    }
 
-        return false; //<--- REPLACE THIS WITH YOUR CODE!
+    static boolean anglesPositive(int angle1, int angle2, int angle3) {
+        return angle1 > 0 && angle2 > 0 && angle3 > 0;
     }
 
     /**
@@ -31,10 +33,9 @@ class Ex1a_CheckTriangleByAngles {
      */
     static boolean canFormValidRightAngledTriangle(int angle1, int angle2, int angle3) {
 
-        //TODO: write your logic here, so it returns true/false as needed
         //HINT: you may also reuse/call here the method 'canFormValidTriangle' (if you fixed that one) to first check the triangle is valid..
 
-        return false; //<--- REPLACE THIS WITH YOUR CODE!
+        return canFormValidTriangle(angle1, angle2, angle3) && (angle1 == 90 || angle2 == 90 || angle3 == 90); //<--- REPLACE THIS WITH YOUR CODE!
     }
 
     //========== METHOD FOR MANUAL TESTING ==========//

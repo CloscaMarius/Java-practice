@@ -3,8 +3,8 @@ package teme.w01_intro;
 class Ex6_MaxValue {
 
     static int max(int x, int y) {
-        //TODO: your code here
-        return 0;
+
+        return x > y ? x : y;
     }
 
     public static void main(String[] args) {

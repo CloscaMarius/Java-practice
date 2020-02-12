@@ -16,9 +16,16 @@ class Ex1b_CheckTriangleBySides {
      */
     static boolean canFormValidTriangle(int side1, int side2, int side3) {
 
-        //TODO: write your logic here, so it returns true/false as needed
 
-        return false; //<--- REPLACE THIS WITH YOUR CODE!
+        return positiveSides(side1, side2, side3) && sumSidesGreater(side1, side2, side3); //<--- REPLACE THIS WITH YOUR CODE!
+    }
+
+    static boolean positiveSides(int side1, int side2, int side3) {
+        return side1 > 0 && side2 > 0 && side3 > 0;
+    }
+
+    static boolean sumSidesGreater(int side1, int side2, int side3) {
+        return side1 + side2 > side3 && side2 + side3 > side1 && side1 + side3 > side2;
     }
 
     /**
@@ -30,10 +37,13 @@ class Ex1b_CheckTriangleBySides {
      */
     static boolean canFormValidRightAngledTriangle(int side1, int side2, int side3) {
 
-        //TODO: write your logic here, so it returns true/false as needed
         //HINT: you may also reuse/call here the method 'canFormValidTriangle' (if you fixed that one) to first check the triangle is valid..
 
-        return false; //<--- REPLACE THIS WITH YOUR CODE!
+        return canFormValidTriangle(side1, side2, side3) && (pitagora(side1, side2, side3) || pitagora(side3, side1, side2) || pitagora(side3, side2, side1)); //<--- REPLACE THIS WITH YOUR CODE!
+    }
+
+    static boolean pitagora(int side1, int side2, int side3) {
+        return side1 * side1 + side2 * side2 == side3 * side3;
     }
 
     //========== METHOD FOR MANUAL TESTING ==========//

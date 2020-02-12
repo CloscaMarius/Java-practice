@@ -13,9 +13,19 @@ class Ex2_TimeConverter {
      */
     static int convertToMilliseconds(int h, int m, int s) {
 
-        //TODO: fill in your code here!
+        return (validHours(h) && validMinutes(m) && validSeconds(s)) ? (h * 3600 + m * 60 + s) * 1000 : -1;
+    }
 
-        return -1;
+    static boolean validHours(int h) {
+        return h <= 23 && h >= 0;
+    }
+
+    static boolean validMinutes(int m) {
+        return m <= 59 && m >= 0;
+    }
+
+    static boolean validSeconds(int s) {
+        return s <= 59 && s >= 0;
     }
 
     /**

@@ -3,8 +3,18 @@ package teme.w01_intro;
 class Ex8_DigitRemover {
 
     static int removeMiddleDigit(int n) {
-        //todo: your code here!
-        return 0;
+
+        return validNumber(n) ? removingMiddleDigit(n) : -1;
+    }
+
+    static int removingMiddleDigit(int n) {
+
+        return n / 1000 * 100 + n % 100;
+    }
+
+    static boolean validNumber(int n) {
+
+        return n / 10000 != 0 && n > 0 && n < 99999;
     }
 
     //manual tests

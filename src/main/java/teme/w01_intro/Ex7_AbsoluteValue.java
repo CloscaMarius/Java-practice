@@ -7,8 +7,8 @@ class Ex7_AbsoluteValue {
      * @return the absolute value of x (value without the sign)
      */
     static double abs(double x) {
-        //TODO: your code here
-        return 0;
+
+        return x < 0 ? -x : x;
     }
 
     public static void main(String[] args) {

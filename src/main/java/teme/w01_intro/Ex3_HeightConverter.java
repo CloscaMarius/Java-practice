@@ -15,15 +15,13 @@ class Ex3_HeightConverter {
      */
     static int convertToCentimeters(int feet, int inches) {
 
-        //TODO: write your code here!
-        return -1;
+        return (int) (feet * 30.48 + inches * 2.54);
     }
 
     static String convertToFeetAndInches(int centimeters) {
 
-        //todo: write your code here, to convert cm to a String value like: 'X feet, Y inches'
-        int feet = -1; //??
-        int inches = -1; //??
+        int feet = (int) (centimeters / 30.48);
+        int inches = (int) (centimeters % 30.48 / 2.54);
 
         return feet + " feet, " + inches + " inches";
     }
