@@ -81,6 +81,7 @@ public class Ex0a_WarmupFlowTest {
     @Test
     @Grade(1)
     public void testFactorial_shouldNotUseRecursion() {
+        assertEquals(1, factorial(1));
         try {
             System.out.println(factorial(100_000));
         } catch (StackOverflowError ignore) {
@@ -109,6 +110,7 @@ public class Ex0a_WarmupFlowTest {
     @Test
     @Grade(1)
     public void testFactorialRec_shouldUseRecursion() {
+        assertEquals(1, factorial(1));
         try {
             System.out.println(factorialRec(100_000));
             fail("For big numbers (like 100000), factorialRec() - the recursive version - is expected to just fail with StackOverflowError.\nYour version didn't fail like that! Is it really recursive?... (seems iterative to me)\n");

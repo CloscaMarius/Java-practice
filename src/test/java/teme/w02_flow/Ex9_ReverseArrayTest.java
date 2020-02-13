@@ -22,7 +22,7 @@ public class Ex9_ReverseArrayTest {
     public Timeout globalTimeout = Timeout.seconds(10); // max running time allowed per each test method
 
     @Test
-    @Grade(3)
+    @Grade(1)
     public void testReverse_basicArray() {
         String[] arr1 = {};
         String[] arr2 = {"aa"};
@@ -35,7 +35,7 @@ public class Ex9_ReverseArrayTest {
     }
 
     @Test
-    @Grade(5)
+    @Grade(6)
     public void testReverse_longerArrays() {
         String[] arr3 = {"aa", "bb", "cc"};
         String[] arr4 = {"aa", "bb", "cc", "dd"};
@@ -51,7 +51,7 @@ public class Ex9_ReverseArrayTest {
     }
 
     @Test
-    @Grade(4)
+    @Grade(5)
     public void testReversedCopy_reverseWorks() {
         String[] arr1 = {};
         String[] arr2 = {"aa"};
