@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 import static teme.w02_flow.Ex3_FinancialSimulation.simulate;
 
 /**
- * MAX GRADE: 14p
+ * MAX GRADE: 12p
  */
 @RunWith(GradeRunner.class)
 public class Ex3_FinancialSimulationTest {
@@ -20,14 +20,14 @@ public class Ex3_FinancialSimulationTest {
     public Timeout globalTimeout = Timeout.seconds(10); // max running time allowed per each test method
 
     @Test
-    @Grade(3)
+    @Grade(2)
     public void simulate_targetAlreadyReached() {
         assertEquals(0, simulate(1000, 10, 900));
         assertEquals(0, simulate(1000, 10, 1000));
     }
 
     @Test
-    @Grade(4)
+    @Grade(3)
     public void simulate_targetPreciselyReachedInOneYear() {
         assertEquals(1, simulate(1000, 5, 1050));
         assertEquals(1, simulate(1000, 10, 1100));

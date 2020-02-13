@@ -2,11 +2,11 @@ package teme.w02_flow;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import teme.util.TestUtil;
 import teme.util.plugin.Grade;
 import teme.util.plugin.GradeRunner;
 
 import static org.junit.Assert.assertEquals;
+import static teme.util.TestUtil.runCapturingOutput;
 import static teme.w02_flow.Ex1_FizzBuzz.fizzBuzz;
 import static teme.w02_flow.Ex1_FizzBuzz.printAllFizzBuzzUpTo;
 
@@ -48,10 +48,20 @@ public class Ex1_FizzBuzzTest {
     }
 
     @Test
-    @Grade(3)
-    public void testPrintAllFizzBuzzUpTo() {
-        String out = TestUtil.runCapturingOutput(() -> printAllFizzBuzzUpTo(15))
-                .trim().replace(System.lineSeparator(), ",").replace(" ", "");
-        assertEquals("1,2,fizz,4,buzz,fizz,7,8,fizz,buzz,11,fizz,13,14,fizzbuzz", out);
+    @Grade(1)
+    public void testPrintAllFizzBuzzUpTo_5() {
+        assertEquals("1,2,fizz,4,buzz",
+                trimIt(runCapturingOutput(() -> printAllFizzBuzzUpTo(5))));
+    }
+
+    @Test
+    @Grade(2)
+    public void testPrintAllFizzBuzzUpTo_32() {
+        assertEquals("1,2,fizz,4,buzz,fizz,7,8,fizz,buzz,11,fizz,13,14,fizzbuzz,16,17,fizz,19,buzz,fizz,22,23,fizz,buzz,26,fizz,28,29,fizzbuzz,31,32",
+                trimIt(runCapturingOutput(() -> printAllFizzBuzzUpTo(32))));
+    }
+
+    private String trimIt(String out) {
+        return out.trim().replace(System.lineSeparator(), ",").replace(" ", "");
     }
 }
