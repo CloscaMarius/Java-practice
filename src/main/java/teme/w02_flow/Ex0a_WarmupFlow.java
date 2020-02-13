@@ -2,6 +2,16 @@ package teme.w02_flow;
 
 class Ex0a_WarmupFlow {
 
+    static void whichIsBigger(int a, int b) {
+        //TODO
+        System.out.println("?");
+    }
+
+    static double max(double a, double b, double c) {
+        //TODO
+        return -1;
+    }
+
     static String xTimes(String s, int n) {
         //TODO
         return "?";
@@ -12,7 +22,7 @@ class Ex0a_WarmupFlow {
         return -1;
     }
 
-    
+
     static long factorial(int n) {
         //TODO
         return -1;

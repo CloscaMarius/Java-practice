@@ -7,18 +7,39 @@ import org.junit.runner.RunWith;
 import teme.util.plugin.Grade;
 import teme.util.plugin.GradeRunner;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
+import static teme.util.TestUtil.runCapturingOutput;
 import static teme.w02_flow.Ex0a_WarmupFlow.*;
 
 /**
- * MAX GRADE: 8p+3p
+ * MAX GRADE: 10p+3p
  */
 @RunWith(GradeRunner.class)
 public class Ex0a_WarmupFlowTest {
 
     @Rule
     public Timeout globalTimeout = Timeout.seconds(10); // max running time allowed per each test method
+
+
+    @Test
+    @Grade(1)
+    public void testWhichIsBigger() {
+        assertTrue(runCapturingOutput(() -> whichIsBigger(-2, -3)).toLowerCase().contains("first"));
+        assertTrue(runCapturingOutput(() -> whichIsBigger(2, 9)).toLowerCase().contains("second"));
+        assertTrue(runCapturingOutput(() -> whichIsBigger(4, 4)).toLowerCase().contains("equal"));
+    }
+
+    @Test
+    @Grade(1)
+    public void testMax() {
+        assertEquals(3, max(1, 2, 3), 0.1);
+        assertEquals(3, max(1, 3, 2), 0.1);
+        assertEquals(3, max(3, 1, 2), 0.1);
+        assertEquals(3, max(3, 3, 1), 0.1);
+        assertEquals(3, max(1, 3, 3), 0.1);
+        assertEquals(3, max(3, 1, 3), 0.1);
+        assertEquals(3, max(3, 3, 3), 0.1);
+    }
 
     @Test
     @Grade(1)
