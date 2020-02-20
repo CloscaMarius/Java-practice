@@ -14,9 +14,9 @@ public class GradeRunner extends Runner {
 
     private int finalGrade;
     private int totalGrade;
-    private final Class testClass;
+    private final Class<?> testClass;
 
-    public GradeRunner(Class testClass) {
+    public GradeRunner(Class<?> testClass) {
         super();
         this.finalGrade = 0;
         this.totalGrade = 0;
@@ -30,10 +30,8 @@ public class GradeRunner extends Runner {
 
     @Override
     public void run(RunNotifier notifier) {
-        // Create a fake test to have as a header for starting the suite
-        createFakeTest(notifier, " x/x ");
         try {
-            Object testObject = testClass.newInstance();
+            Object testObject = testClass.getDeclaredConstructor().newInstance();
             Arrays.asList(testClass.getMethods()).forEach(
                     method -> {
                         Description description = Description.createTestDescription(testClass, method.getName());
@@ -62,27 +60,23 @@ public class GradeRunner extends Runner {
             e.printStackTrace();
         }
 
-        // Create a fake test(skipped) with the final gradle as a description
-        createFakeTest(notifier, String.format("%s/%s", finalGrade, totalGrade));
-    }
-
-    private int getGrade(Method method) {
-        Grade grade = method.getAnnotation(Grade.class);
-        return grade != null ? grade.value() : 0;
-    }
-
-    private void createFakeTest(RunNotifier notifier, String numberPattern) {
+        // Create a fake test successful test with the final gradle as a description
         String header = String.format("Grade for %s", testClass.getSimpleName());
         Description gradeDescription = Description.createTestDescription(testClass,
                 String.format("%s %s: %s %s",
                         String.join("", Collections.nCopies(20, ">")),
                         header,
-                        numberPattern,
+                        String.format("%s/%s", finalGrade, totalGrade),
                         String.join("", Collections.nCopies(20, "<"))
                 )
         );
 
         // We don't need to notify starting the test, otherwise there will be a duplicate result
         notifier.fireTestIgnored(gradeDescription);
+    }
+
+    private int getGrade(Method method) {
+        Grade grade = method.getAnnotation(Grade.class);
+        return grade != null ? grade.value() : 0;
     }
 }
