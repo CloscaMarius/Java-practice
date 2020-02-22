@@ -3,7 +3,18 @@ package teme.w02_flow;
 class Ex2_FirstPowerAbove {
 
     static double firstPowerAbove(double base, double limit) {
-        //TODO
+        if (base >= 0 && limit >= 0) {
+            double result = 1;
+            for (double i = 0; i <= limit; i += 0.2) {
+                result *= base;
+                if (1 > limit) {
+                    return 1;
+                } else if (result > limit) {
+                    return result;
+                }
+
+            }
+        }
         return -1;
     }
 

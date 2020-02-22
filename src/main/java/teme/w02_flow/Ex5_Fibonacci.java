@@ -5,13 +5,34 @@ import java.util.Arrays;
 class Ex5_Fibonacci {
 
     static int fibonacci(int n) {
-        //TODO
-        return -1;
+        int f0 = 0;
+        int f1 = 1;
+        int fib = 0;
+        if (n > 2) {
+            for (int i = 1; i < n; i++) {
+
+                fib = f0 + f1;
+                f0 = f1;
+                f1 = fib;
+            }
+        } else if (n == 0) {
+            fib = f0;
+        } else if (n == 1) {
+            fib = f0 + f1;
+        } else if (n == 2) {
+            fib = f0 + f1;
+        }
+        return fib;
     }
 
     static int[] fibonacciSequence(int n) {
-        //TODO
-        return null;
+        int[] fibonacciNumbers = new int[n];
+        for (int i = 0; i < n; i++) {
+            fibonacciNumbers[i] += fibonacci(i);
+        }
+
+
+        return fibonacciNumbers;
     }
 
     public static void main(String[] args) {

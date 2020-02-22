@@ -3,40 +3,77 @@ package teme.w02_flow;
 class Ex0a_WarmupFlow {
 
     static void whichIsBigger(int a, int b) {
-        //TODO
-        System.out.println("?");
+        if (a > b) {
+            System.out.println("First number is bigger: " + a);
+        } else if (b > a) {
+            System.out.println("Second number is bigger: " + b);
+        } else {
+            System.out.println("Numbers are equal: " + a);
+        }
     }
 
     static double max(double a, double b, double c) {
-        //TODO
-        return -1;
+        if (a >= b && a >= c) {
+            return a;
+        }
+        if (b >= a && b >= c) {
+            return b;
+        }
+        return c;
     }
 
     static String xTimes(String s, int n) {
-        //TODO
-        return "?";
+        String times = "";
+        for (int i = 0; i < n; i++) {
+            times += s;
+        }
+        return times;
     }
 
     static int sumSquares(int n) {
-        //TODO
-        return -1;
+        int sum = 0;
+        for (int i = 1; i <= n; i++) {
+            sum = sum + i * i;
+        }
+        return sum;
     }
 
 
     static long factorial(int n) {
-        //TODO
-        return -1;
+        long factorial = 1;
+        for (int i = 2; i <= n; i++) {
+            factorial *= i;
+        }
+        return factorial;
     }
 
     static long factorialRec(int n) {
-        //TODO
-        return -1;
+        if (n <= 1) {
+            return 1;
+        }
+        return n * factorialRec(n - 1);
     }
 
 
     static byte dayOfWeek(String s) {
-        //TODO
-        return -1;
+        switch (s.toUpperCase()) {
+            case "LUNI":
+                return 1;
+            case "MARTI":
+                return 2;
+            case "MIERCURI":
+                return 3;
+            case "JOI":
+                return 4;
+            case "VINERI":
+                return 5;
+            case "SAMBATA":
+                return 6;
+            case "DUMINICA":
+                return 7;
+            default:
+                return -1;
+        }
     }
 
 

@@ -5,17 +5,31 @@ import java.util.Arrays;
 class Ex9_ReverseArray {
 
     static String[] reversedCopy(String[] arr) {
-        //TODO
-        return arr;
+
+        String[] reversedArr = Arrays.copyOf(arr, arr.length);
+        for (int i = 0; i < reversedArr.length / 2; i++) {
+            String temp = reversedArr[i];
+            reversedArr[i] = reversedArr[reversedArr.length - i - 1];
+            reversedArr[reversedArr.length - i - 1] = temp;
+        }
+
+        System.out.println("array after reverse: " + Arrays.toString(reversedArr));
+        return reversedArr;
     }
 
     static void reverse(String[] arr) {
-        //TODO
+        for (int i = 0; i < arr.length / 2; i++) {
+            String temp = arr[i];
+            arr[i] = arr[arr.length - i - 1];
+            arr[arr.length - i - 1] = temp;
+        }
+
+        System.out.println("array after reverse: " + Arrays.toString(arr));
     }
 
     //helper method - swaps the elements at 2 given indices, in an array
     static void swapPositions(String[] arr, int i, int j) {
-        //TODO
+
     }
 
     public static void main(String[] args) {

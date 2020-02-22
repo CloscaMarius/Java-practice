@@ -4,9 +4,20 @@ class Ex10_ConsecutiveRepeats {
 
     static String onlyConsecutiveRepeating(int[] numbersArray) {
 
-        //TODO: your code here
-
-        return "?";
+        String result = "";
+        for (int i = 0; i < numbersArray.length - 1; i++) {
+            if (numbersArray[i] == numbersArray[i + 1]) {
+                result += String.valueOf(numbersArray[i]) + " ";
+                for (int j = i + 2; j < numbersArray.length; j++) {
+                    if (numbersArray[i] == numbersArray[j]) {
+                        i = j;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        return result;
     }
 
 

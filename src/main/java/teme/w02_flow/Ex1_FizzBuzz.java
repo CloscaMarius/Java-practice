@@ -3,12 +3,21 @@ package teme.w02_flow;
 class Ex1_FizzBuzz {
 
     static String fizzBuzz(int i) {
-        //TODO
-        return "?";
+        if ((i % 3) == 0 && (i % 5) == 0) {
+            return "fizzbuzz";
+        } else if ((i % 3) == 0) {
+            return "fizz";
+        } else if (i % 5 == 0) {
+            return "buzz";
+        } else {
+            return String.valueOf(i);
+        }
     }
 
     static void printAllFizzBuzzUpTo(int n) {
-        //TODO
+        for (int i = 1; i <= n; i++) {
+            System.out.println(fizzBuzz(i));
+        }
     }
 
 

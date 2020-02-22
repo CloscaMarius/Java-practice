@@ -5,28 +5,43 @@ import java.util.Arrays;
 class Ex0b_WarmupArrays {
 
     static double sum(double[] arr) {
-        //TODO
-        return -1;
+        double sumArr = 0;
+        for (double i : arr) {
+            sumArr += i;
+        }
+        return sumArr;
     }
 
     static double avg(double[] arr) {
-        //TODO
-        return -1;
+        return sum(arr) / arr.length;
     }
 
     static double max(double[] arr) {
-        //TODO
-        return -1;
+        double max = Double.NEGATIVE_INFINITY;
+        for (double value : arr) {
+            if (value > max) {
+                max = value;
+            }
+        }
+        return max;
     }
 
 
     static double sumPositives(double[] arr) {
-        //TODO
-        return -1;
+        double sum = 0;
+        for (double i : arr) {
+            if (i < 0) {
+                break;
+            }
+            sum += i;
+        }
+        return sum;
     }
 
     static void multiply(double[] arr, double x) {
-        //TODO
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] *= x;
+        }
     }
 
 
