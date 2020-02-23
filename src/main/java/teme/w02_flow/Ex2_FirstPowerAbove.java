@@ -23,5 +23,9 @@ class Ex2_FirstPowerAbove {
         System.out.println(firstPowerAbove(2, 1000)); //=> 1024, as: 2^10  = 1024 > 1000
         System.out.println(firstPowerAbove(7, 0.1));  //=> 1,    as: 7^0   = 1    > 0.1
         System.out.println(firstPowerAbove(1.5, 2));  //=> 2.25, as: 1.5^2 = 2.25 > 2
+
+        System.out.println(firstPowerAbove(1.0625, 1.5)); // 1.5286306776106358 => ok
+        System.out.println(firstPowerAbove(1.0625, 1.8)); // 1.8335357712649056 => ok
+        System.out.println(firstPowerAbove(1.0625, 1.9)); // -1.0 => NOT OK!! TODO: fix this!
     }
 }
