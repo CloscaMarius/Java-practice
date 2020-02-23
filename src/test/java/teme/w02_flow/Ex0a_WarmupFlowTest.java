@@ -24,9 +24,14 @@ public class Ex0a_WarmupFlowTest {
     @Test
     @Grade(1)
     public void testWhichIsBigger() {
-        assertTrue(runCapturingOutput(() -> whichIsBigger(-2, -3)).toLowerCase().contains("first"));
-        assertTrue(runCapturingOutput(() -> whichIsBigger(2, 9)).toLowerCase().contains("second"));
-        assertTrue(runCapturingOutput(() -> whichIsBigger(4, 4)).toLowerCase().contains("equal"));
+        String out = runCapturingOutput(() -> whichIsBigger(-2, -3)).toLowerCase();
+        assertTrue(out.contains("first") && !out.contains("second") && !out.contains("equal"));
+
+        out = runCapturingOutput(() -> whichIsBigger(2, 9)).toLowerCase();
+        assertTrue(!out.contains("first") && out.contains("second") && !out.contains("equal"));
+
+        out = runCapturingOutput(() -> whichIsBigger(4, 4)).toLowerCase();
+        assertTrue(!out.contains("first") && !out.contains("second") && out.contains("equal"));
     }
 
     @Test
