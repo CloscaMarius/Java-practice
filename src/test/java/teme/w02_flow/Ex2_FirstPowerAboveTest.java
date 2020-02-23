@@ -41,9 +41,9 @@ public class Ex2_FirstPowerAboveTest {
     public void firstPowerAbove_floatBase_withRoundingErrors() {
         //some rounding errors occur here, amount depends on computing method!!
         //(Math.pow() may be more precise than manual multiplications?)
-        //so we use a more relaxed precision (0.2) when checking expected vs actual result
-        assertEquals(2.03, firstPowerAbove(1.125, 2), 0.2); //1.125^6  ~= 2.02728 >2
-        assertEquals(4.1, firstPowerAbove(1.125, 4), 0.2);  //1.125^12 ~= 4.10989 >4
+        //so we use a more relaxed precision (0.1) when checking expected vs actual result
+        assertEquals(1.5286306776106358, firstPowerAbove(1.0625, 1.5), 0.1); //1.5286306776106358 = 1.0625^7
+        assertEquals(2.0698899917795224, firstPowerAbove(1.0625, 2), 0.1);    //2.0698899917795224 = 1.0525^12
     }
 
     @Test
