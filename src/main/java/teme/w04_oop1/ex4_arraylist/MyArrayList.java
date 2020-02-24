@@ -1,11 +1,22 @@
 package teme.w04_oop1.ex4_arraylist;
 
+/**
+ * Custom class, which stores a sequence of elements, of type String,
+ * using an array of String values.
+ */
 class MyArrayList {
 
     //TODO!
 
     /**
-     * Get the size of the list (number of 'useful' elements)
+     * Returns true if list is empty, false otherwise
+     */
+    boolean isEmpty() {
+        return false;
+    }
+
+    /**
+     * Get the size of the list (number of elements it contains)
      */
     int size() {
         return -1;
@@ -20,7 +31,7 @@ class MyArrayList {
     }
 
     /**
-     * Update the elment at a specified index
+     * Update the element at a specified index
      * (does nothing if index is invalid)
      */
     void set(int index, String newValue) {
@@ -28,26 +39,27 @@ class MyArrayList {
     }
 
     /**
-     * Add a new value at the end of the list
+     * Add a new value at the END of the list
      */
-    void add(String newValue) {
+    void addLast(String newValue) {
 
     }
 
     /**
      * Insert a new value at the given position in the list,
      * shifting all elements after it with one position up.
+     * (does nothing if index is invalid)
      */
-    void add(int index, String newValue) {
+    void insert(int index, String newValue) {
 
     }
 
     /**
-     * Remove the last element of the list
-     * (does nothing if list is empty)
+     * Remove the last element of the list, also returning its value
+     * (does nothing if list is empty, returns null)
      */
-    void remove() {
-
+    String removeLast() {
+        return null;
     }
 
     /**
@@ -55,12 +67,9 @@ class MyArrayList {
      * shifting all elements after it with one position down.
      * (does nothing if index is invalid)
      */
-    void remove(int index) {
-
+    String remove(int index) {
+        return null;
     }
-
-
-    //Some other nice methods to implement:
 
     /**
      * Searches for the given value in the list, and returns the index
@@ -94,30 +103,44 @@ class MyArrayList {
     public static void main(String[] args) {
 
         MyArrayList list = new MyArrayList();
-        System.out.println(list); //[]
+        System.out.println("\nBefore any action: " + list); //[]
+        System.out.println("size: " + list.size() + ", isEmpty: " + list.isEmpty());
 
-        list.add("aa");
-        list.add("bb");
-        list.add("cc");
-        list.add("dd");
-        System.out.println(list); //[aa, bb, cc, dd]
+        list.addLast("aa");
+        list.addLast("bb");
+        list.addLast("cc");
+        list.addLast("dd");
+        System.out.println("\nAfter adding 4 elements: " + list); //[aa, bb, cc, dd]
+        System.out.println("size: " + list.size() + ", isEmpty: " + list.isEmpty());
 
-        list.remove();
-        System.out.println(list); //[aa, bb, cc]
+        System.out.println("\nindexOf(aa): " + list.indexOf("aa")); //0
+        System.out.println("indexOf(cc): " + list.indexOf("cc")); //2
+        System.out.println("indexOf(xx): " + list.indexOf("xx")); //-1
+        System.out.println("contains(cc): " + list.contains("cc")); //true
+        System.out.println("contains(xx): " + list.contains("xx")); //false
 
-        System.out.println("indexOf(aa): " + list.indexOf("aa")); //0
-        System.out.println("indexOf(bb): " + list.indexOf("bb")); //2
+        System.out.println("\nget(2): " + list.get(2)); //cc
+        System.out.println("get(5): " + list.get(5)); //null
 
-        list.add(0, "ee"); //[ee, aa, bb, cc]
-        System.out.println(list);
+        list.insert(0, "ee"); //[ee, aa, bb, cc, dd]
+        System.out.println("\nAfter inserting 'ee' at index 0: " + list);
+        list.insert(3, "ff"); //[ee, aa, bb, ff, cc, dd]
+        System.out.println("After inserting 'ff' at index 3: " + list);
 
-        list.add(3, "ff"); //[ee, aa, bb, ff, cc]
-        System.out.println(list);
 
-        list.remove(0); //[aa, bb, ff, cc]
-        System.out.println(list);
+        list.set(5, "DD!");
+        System.out.println("\nAfter update(5, 'DD!'): " + list);
+        list.set(10, "ZZ");
+        System.out.println("After update(10, 'ZZ'): " + list);
 
-        list.remove(3); //[aa, bb, ff, cc]
-        System.out.println(list);
+
+        String removed = list.removeLast();
+        System.out.println("\nAfter removing last elem (" + removed + "): " + list); //[ee, aa, bb, ff, cc]
+
+        removed = list.remove(0); //[aa, bb, ff, cc]
+        System.out.println("\nAfter removing elem at index 0 (" + removed + "): " + list);
+
+        removed = list.remove(3); //[aa, bb, ff]
+        System.out.println("After removing elem at index 3 (" + removed + "): " + list);
     }
 }
