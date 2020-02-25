@@ -25,15 +25,16 @@ public class Ex2_FirstPowerAboveTest {
     @Grade(3)
     public void firstPowerAbove_intBase() {
         assertEquals(25, firstPowerAbove(5.0, 20), DELTA);     //5^2 = 25 >20
-        assertEquals(32, firstPowerAbove(2.0, 30), DELTA);     //2^5 = 32 >30
+        assertEquals(32, firstPowerAbove(2.0, 31.9), DELTA);   //2^5 = 32 >31.9
+        assertEquals(64, firstPowerAbove(2.0, 32), DELTA);     //2^6 = 64 >32
         assertEquals(1024, firstPowerAbove(2.0, 1000), DELTA); //2^10 = 1024 >1000
     }
 
     @Test
     @Grade(3)
     public void firstPowerAbove_floatBase() {
-        assertEquals(2.25, firstPowerAbove(1.5, 2), DELTA);      //1.5^2 = 2.25 >2
-        assertEquals(15.625, firstPowerAbove(2.5, 12), DELTA);   //2.5^3 = 15.625 >12
+        assertEquals(2.25, firstPowerAbove(1.5, 2.2), DELTA);      //1.5^2 = 2.25 >2
+        assertEquals(15.625, firstPowerAbove(2.5, 15.5), DELTA);   //2.5^3 = 15.625 >12
     }
 
     @Test
