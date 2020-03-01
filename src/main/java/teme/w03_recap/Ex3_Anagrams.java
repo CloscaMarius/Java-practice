@@ -1,10 +1,29 @@
 package teme.w03_recap;
 
+import java.util.Arrays;
+
 class Ex3_Anagrams {
 
     static boolean anagrams(String s1, String s2) {
-        //TODO
-        return false;
+
+        if (s1.length() != s2.length()) {
+            return false;
+        }
+
+        char[] charS1 = s1.toLowerCase().toCharArray();
+        char[] charS2 = s2.toLowerCase().toCharArray();
+
+        Arrays.sort(charS1);
+        Arrays.sort(charS2);
+
+        for (int i = 0; i < s1.length(); i++) {
+            if (charS1[i] != charS2[i]) {
+                return false;
+            }
+        }
+
+        return true;
+
     }
 
     /**

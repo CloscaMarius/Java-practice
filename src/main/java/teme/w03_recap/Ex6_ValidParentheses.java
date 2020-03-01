@@ -3,8 +3,24 @@ package teme.w03_recap;
 class Ex6_ValidParentheses {
 
     static boolean isValid(String expression) {
-        //TODO
-        return false;
+        int countOpen = 0;
+        int countClosed = 0;
+        if (expression.isEmpty()) {
+            return true;
+        }
+        for (char c : expression.toCharArray()) {
+            if (c == '(') {
+                countOpen++;
+            }
+            if (c == ')') {
+                countClosed++;
+            }
+            if (countClosed > countOpen) {
+                return false;
+            }
+        }
+        return countOpen == countClosed;
+
     }
 
     /**

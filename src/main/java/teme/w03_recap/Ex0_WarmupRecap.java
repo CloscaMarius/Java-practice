@@ -3,35 +3,120 @@ package teme.w03_recap;
 class Ex0_WarmupRecap {
 
     static String ends(String text) {
-        return "TODO!";
+
+        if (text.length() <= 2) {
+            return text;
+        }
+
+        char prima = text.charAt(0);
+        char ultima = text.charAt(text.length() - 1);
+
+
+        return (String.valueOf(prima) + ultima);
+    }
+
+    static String middle_v1(String text) {
+        if (text.length() % 2 == 0 && text.length() > 3) {
+            char middle1 = text.charAt(text.length() / 2 - 1);
+            char middle2 = text.charAt(text.length() / 2);
+            return (String.valueOf(middle1) + middle2);
+        }
+        if (text.length() % 2 == 1) {
+            char middle = text.charAt((text.length() / 2));
+            return (String.valueOf(middle));
+        }
+        return text;
     }
 
     static String middle(String text) {
-        return "TODO!";
+        if (text.length() <= 2) {
+            return text;
+        }
+
+        int indexMid = text.length() / 2;
+        if (text.length() % 2 == 0) {
+            char middle1 = text.charAt(indexMid - 1);
+            char middle2 = text.charAt(indexMid);
+            return String.valueOf(middle1) + middle2;
+        }
+
+        char middle = text.charAt(indexMid);
+        return String.valueOf(middle);
+
     }
 
     static String onlyUpper(String text) {
-        return "TODO!";
+        char[] litere = text.toCharArray();
+        String result = "";
+        for (char litera : litere) {
+
+            if (litera >= 'A' && litera <= 'Z') {
+                result += litera;
+            }
+        }
+        return result;
     }
 
     static boolean contains(String text, char letter) {
-        return false; //TODO!
+        int i = 0;
+        while (i < text.length()) {
+            if (text.charAt(i) == letter) {
+                return true;
+            }
+            i++;
+        }
+        return false;
     }
 
     static int count(String text, char letter) {
-        return -1; //TODO
+        int count = 0;
+        for (char l : text.toCharArray()) {
+            if (l == letter) {
+                count++;
+            }
+        }
+
+        return count;
     }
 
     static int countVowels(String s) {
-        return -1; //TODO
+        int count = 0;
+        String sLower = s.toLowerCase();
+        for (char l : sLower.toCharArray()) {
+            if (l == 'a' || l == 'e' || l == 'i' || l == 'o' || l == 'u') {
+                count++;
+
+            }
+        }
+        return count;
     }
 
     static boolean isSorted(String text) {
-        return false; //TODO!
+        for (int i = 0; i < text.length() - 1; i++) {
+            if (text.charAt(i) > text.charAt(i + 1)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     static String sorted(String text) {
-        return "?"; //TODO!
+        char[] letters = text.toCharArray();
+        sort(letters);
+        return String.valueOf(letters);
+
+    }
+
+    static void sort(char[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            for (int j = 0; j < array.length - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    char temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
     }
 
 

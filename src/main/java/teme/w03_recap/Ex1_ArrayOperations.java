@@ -5,38 +5,86 @@ import java.util.Arrays;
 class Ex1_ArrayOperations {
 
     static int[] append(int[] array, int elem) {
-        //TODO!
-        return null;
+        int[] newArray = new int[array.length + 1];
+        for (int i = 0; i < array.length; i++) {
+            newArray[i] = array[i];
+        }
+        newArray[newArray.length - 1] = elem;
+        return newArray;
     }
 
     static int[] removeLast(int[] array) {
-        //TODO
-        return null;
+        if (array.length == 0) {
+            return array;
+        }
+        int[] result = new int[array.length - 1];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = array[i];
+        }
+        return result;
     }
 
     static int[] concat(int[] array1, int[] array2) {
-        //TODO
-        return null;
+        int[] concatArray = new int[array1.length + array2.length];
+        int i = 0;
+        for (int element1 : array1) {
+            concatArray[i] = element1;
+            i++;
+        }
+        for (int element2 : array2) {
+            concatArray[i] = element2;
+            i++;
+        }
+        return concatArray;
     }
 
     static boolean contains(int[] array, int elem) {
-        //TODO
+        if (array.length == 0) {
+            return false;
+        }
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == elem) {
+                return true;
+            }
+        }
         return false;
     }
 
     static int indexOf(int[] array, int elem) {
-        //TODO
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == elem) {
+                return i;
+            }
+        }
         return -1;
     }
 
     static int lastIndexOf(int[] array, int elem) {
-        //TODO
-        return -1;
+        int index = -1;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == elem) {
+                index = i;
+            }
+        }
+        return index;
     }
 
     static int[] filterPositives(int[] array) {
-        //TODO
-        return null;
+        int count = 0;
+        for (int element1 : array) {
+            if (element1 < 0) {
+                count++;
+            }
+        }
+        int[] newArray = new int[array.length - count];
+        int i = 0;
+        for (int element2 : array) {
+            if (element2 >= 0) {
+                newArray[i] = element2;
+                i++;
+            }
+        }
+        return newArray;
     }
 
 

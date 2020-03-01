@@ -5,23 +5,68 @@ import java.util.Arrays;
 class Ex7_MatrixIterator {
 
     static int sumAll(int[][] matrix) {
-        //TODO
-        return -1;
+        int result = 0;
+        for (int row[] : matrix) {
+            for (int number : row) {
+                result += number;
+            }
+        }
+        return result;
     }
 
     static int sumDiag1(int[][] matrix) {
-        //TODO
-        return -1;
+        int result = 0;
+        for (int row = 0; row < matrix.length; row++) {
+            for (int col = 0; col < matrix.length; col++) {
+                if (row == col) {
+                    result += matrix[row][col];
+                }
+            }
+        }
+        return result;
     }
 
     static int[] elementsDiag2(int[][] matrix) {
-        //TODO
-        return null;
+        int[] result = new int[matrix.length];
+        int index = 0;
+        for (int row = 0; row < matrix.length; row++) {
+            for (int col = matrix.length - 1; col >= 0; col--) {
+                if (row + col == matrix.length - 1) {
+                    result[index] += matrix[row][col];
+                    index++;
+                }
+            }
+        }
+        return result;
     }
 
     static int sumPerimeter(int[][] matrix) {
-        //TODO
-        return -1;
+        int sum = 0;
+        if (matrix.length == 1) {
+            sum = matrix[0][0];
+        } else {
+            for (int row = 0; row <= matrix.length - 1; row++) {
+                for (int col = 0; col <= matrix.length - 1; col++) {
+                    if (row == 0) {
+                        sum += matrix[row][col];
+                    }
+                    if (row == matrix.length - 1) {
+                        sum += matrix[row][col];
+                    }
+                }
+            }
+            for (int row = 1; row < matrix.length - 1; row++) {
+                for (int col = 0; col <= matrix.length - 1; col++) {
+                    if (col == 0) {
+                        sum += matrix[row][col];
+                    }
+                    if (col == matrix.length - 1) {
+                        sum += matrix[row][col];
+                    }
+                }
+            }
+        }
+        return sum;
     }
 
 

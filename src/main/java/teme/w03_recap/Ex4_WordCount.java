@@ -3,9 +3,16 @@ package teme.w03_recap;
 class Ex4_WordCount {
 
     static int wordCount(String phrase) {
-        //TODO
-        return -1;
+        if (phrase == null) {
+            return 0;
+        }
+        String words = phrase.trim();
+        if (words.isEmpty()) {
+            return 0;
+        }
+        return words.split("\\s+").length;
     }
+
 
     //some manual tests
     public static void main(String[] args) {

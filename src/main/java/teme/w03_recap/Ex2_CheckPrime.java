@@ -3,9 +3,18 @@ package teme.w03_recap;
 class Ex2_CheckPrime {
 
     static boolean isPrime(int n) {
-        //TODO
-        return false;
+        if (n <= 1) {
+            return false;
+        }
+
+        for (int i = 2; i < n; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
+
 
     public static void main(String[] args) {
         //test some primes

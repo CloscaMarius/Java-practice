@@ -5,9 +5,21 @@ import java.util.Arrays;
 class Ex11_MergeSort {
 
     static int[] sort(int[] array) {
-        //TODO
-        return null;
+
+        if (array.length > 1) {
+            int mid = array.length / 2;
+            int[] first = Arrays.copyOfRange(array, 0, mid);
+            Ex9_InsertionSort.sort(first);
+
+            int[] second = Arrays.copyOfRange(array, mid, array.length);
+            Ex9_InsertionSort.sort(second);
+
+            array = Ex10_MergeSortedArrays.merge(first, second);
+
+        }
+        return array;
     }
+
 
     public static void main(String[] args) {
         testSort(new int[]{});

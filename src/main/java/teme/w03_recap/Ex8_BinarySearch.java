@@ -11,7 +11,21 @@ class Ex8_BinarySearch {
      * Searches for value x in whole given array, returns true if found
      */
     static boolean contains(int x, int[] array) {
-        //TODO
+        int beginIdx = 0, endIdx = array.length - 1;
+        while (beginIdx <= endIdx) {
+            int m = beginIdx + (endIdx - beginIdx) / 2;
+
+            if (array[m] == x)
+                return true;
+
+            if (array[m] < x)
+                beginIdx = m + 1;
+
+
+            else
+                endIdx = m - 1;
+        }
+
         return false;
     }
 
@@ -24,7 +38,20 @@ class Ex8_BinarySearch {
      * May call itself as needed (but with other params - different begin/end idx values)
      */
     private static boolean containsRec(int x, int[] array, int beginIdx, int endIdx) {
-        //TODO
+        if (endIdx >= beginIdx) {
+            int mid = beginIdx + (endIdx - beginIdx) / 2;
+
+            if (array[mid] == x)
+                return true;
+
+
+            if (array[mid] > x)
+                return containsRec(x, array, beginIdx, mid - 1);
+
+
+            return containsRec(x, array, mid + 1, endIdx);
+        }
+
         return false;
     }
 

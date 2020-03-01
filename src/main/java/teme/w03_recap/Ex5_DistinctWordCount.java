@@ -3,18 +3,43 @@ package teme.w03_recap;
 class Ex5_DistinctWordCount {
 
     static String[] splitToWords(String text) {
-        //TODO
-        return null;
+        String[] result = new String[0];
+        if (text == null) {
+            return result;
+        }
+
+        String words = text.trim();
+
+        if (words.isEmpty()) {
+            return result;
+        }
+        result = words.split("\\s+");
+        return result;
     }
 
     static boolean contains(String[] wordsArray, String word) {
-        //TODO
+        for (int i = 0; i < wordsArray.length; i++) {
+            if (word.equals(wordsArray[i])) {
+                return true;
+            }
+        }
         return false;
     }
 
     static int distinctWordCount(String phrase) {
-        //TODO
-        return -1;
+        String lowerCasePhrase = phrase.toLowerCase();
+        String[] phraseArray = splitToWords(lowerCasePhrase);
+        int count = phraseArray.length;
+
+        for (int i = 0; i < phraseArray.length; i++) {
+            for (int j = i + 1; j < phraseArray.length; j++) {
+                if (phraseArray[i].equals(phraseArray[j])) {
+                    count--;
+                    break;
+                }
+            }
+        }
+        return count;
     }
 
     //some manual tests
