@@ -18,23 +18,21 @@ public class MyLinkedListTest {
     public void size_empty_add() {
         MyLinkedList l = new MyLinkedList();
         assertEquals(0, l.size());
-        assertTrue(l.isEmpty());
 
-        l.addBefore("aa");
-        l.addBefore("bb");
-        l.addBefore("aa");
+        l.insert(0, "aa");
+        l.insert(0, "bb");
+        l.insert(0, "aa");
         assertEquals(3, l.size());
-        assertFalse(l.isEmpty());
     }
 
     @Test
     @Grade(2)
     public void add_get() {
         MyLinkedList l = new MyLinkedList();
-        l.addBefore("dd");
-        l.addBefore("cc");
-        l.addBefore("bb");
-        l.addBefore("aa");
+        l.insert(0, "dd");
+        l.insert(0, "cc");
+        l.insert(0, "bb");
+        l.insert(0, "aa");
 
         assertEquals("aa", l.get(0));
         assertEquals("bb", l.get(1));
@@ -49,10 +47,10 @@ public class MyLinkedListTest {
     @Grade(1)
     public void set() {
         MyLinkedList l = new MyLinkedList();
-        l.addBefore("dd");
-        l.addBefore("cc");
-        l.addBefore("bb");
-        l.addBefore("aa");
+        l.insert(0, "dd");
+        l.insert(0, "cc");
+        l.insert(0, "bb");
+        l.insert(0, "aa");
 
         assertEquals("bb", l.get(1));
         l.set(1, "BB!");
@@ -91,16 +89,16 @@ public class MyLinkedListTest {
     @Grade(1)
     public void remove_removes() {
         MyLinkedList l = new MyLinkedList();
-        l.removeFirst();
+        l.remove(0);
         l.remove(-1);
         l.remove(2);
 
-        l.addBefore("dd");
-        l.addBefore("cc");
-        l.addBefore("bb");
-        l.addBefore("aa");
+        l.insert(0, "dd");
+        l.insert(0, "cc");
+        l.insert(0, "bb");
+        l.insert(0, "aa");
 
-        l.removeFirst();
+        l.remove(0);
         assertEquals(3, l.size());
         assertEquals("bb", l.get(0));
         assertEquals("cc", l.get(1));
@@ -120,17 +118,16 @@ public class MyLinkedListTest {
     @Grade(1)
     public void remove_returnsRemovedValue() {
         MyLinkedList l = new MyLinkedList();
-        assertNull(l.removeFirst());
         assertNull(l.remove(0));
 
-        l.addBefore("dd");
-        l.addBefore("cc");
-        l.addBefore("bb");
-        l.addBefore("aa");
+        l.insert(0, "dd");
+        l.insert(0, "cc");
+        l.insert(0, "bb");
+        l.insert(0, "aa");
 
         assertNull(l.remove(-1));
         assertNull(l.remove(4));
-        assertEquals("aa", l.removeFirst());
+        assertEquals("aa", l.remove(0));
         assertEquals("bb", l.remove(0));
         assertEquals("dd", l.remove(1));
         assertEquals("cc", l.remove(0));
@@ -140,10 +137,10 @@ public class MyLinkedListTest {
     @Grade(2)
     public void indexOf() {
         MyLinkedList l = new MyLinkedList();
-        l.addBefore("dd");
-        l.addBefore("cc");
-        l.addBefore("bb");
-        l.addBefore("aa");
+        l.insert(0, "dd");
+        l.insert(0, "cc");
+        l.insert(0, "bb");
+        l.insert(0, "aa");
 
         assertEquals(1, l.indexOf("bb"));
         assertEquals(-1, l.indexOf("ee"));
@@ -151,24 +148,11 @@ public class MyLinkedListTest {
 
     @Test
     @Grade(1)
-    public void contains() {
-        MyLinkedList l = new MyLinkedList();
-        l.addBefore("dd");
-        l.addBefore("cc");
-        l.addBefore("bb");
-        l.addBefore("aa");
-
-        assertTrue(l.contains("bb"));
-        assertFalse(l.contains("ee"));
-    }
-
-    @Test
-    @Grade(1)
     public void testToString() {
         MyLinkedList l = new MyLinkedList();
-        l.addBefore("cc");
-        l.addBefore("bb");
-        l.addBefore("aa");
+        l.insert(0, "cc");
+        l.insert(0, "bb");
+        l.insert(0, "aa");
 
         assertTrue(l.toString().contains("aa"));
         assertTrue(l.toString().contains("bb"));

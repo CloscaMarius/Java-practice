@@ -18,23 +18,21 @@ public class MyArrayListTest {
     public void size_empty_add() {
         MyArrayList l = new MyArrayList();
         assertEquals(0, l.size());
-        assertTrue(l.isEmpty());
 
-        l.addLast("aa");
-        l.addLast("bb");
-        l.addLast("aa");
+        l.insert(0, "aa");
+        l.insert(1, "bb");
+        l.insert(2, "aa");
         assertEquals(3, l.size());
-        assertFalse(l.isEmpty());
     }
 
     @Test
     @Grade(2)
     public void add_get() {
         MyArrayList l = new MyArrayList();
-        l.addLast("aa");
-        l.addLast("bb");
-        l.addLast("cc");
-        l.addLast("dd");
+        l.insert(0, "aa");
+        l.insert(1, "bb");
+        l.insert(2, "cc");
+        l.insert(3, "dd");
 
         assertEquals("aa", l.get(0));
         assertEquals("bb", l.get(1));
@@ -49,10 +47,10 @@ public class MyArrayListTest {
     @Grade(1)
     public void set() {
         MyArrayList l = new MyArrayList();
-        l.addLast("aa");
-        l.addLast("bb");
-        l.addLast("cc");
-        l.addLast("dd");
+        l.insert(0, "aa");
+        l.insert(1, "bb");
+        l.insert(2, "cc");
+        l.insert(3, "dd");
         assertEquals("bb", l.get(1));
         l.set(1, "BB!");
         assertEquals("BB!", l.get(1));
@@ -62,10 +60,10 @@ public class MyArrayListTest {
     @Grade(1)
     public void insert() {
         MyArrayList l = new MyArrayList();
-        l.addLast("aa");
-        l.addLast("bb");
-        l.addLast("cc");
-        l.addLast("dd");
+        l.insert(0, "aa");
+        l.insert(1, "bb");
+        l.insert(2, "cc");
+        l.insert(3, "dd");
         l.insert(1, "ab");
         assertEquals(5, l.size());
         assertEquals("ab", l.get(1));
@@ -76,16 +74,16 @@ public class MyArrayListTest {
     @Grade(1)
     public void remove_removes() {
         MyArrayList l = new MyArrayList();
-        l.removeLast();
+        l.remove(0);
         l.remove(-1);
         l.remove(2);
 
-        l.addLast("aa");
-        l.addLast("bb");
-        l.addLast("cc");
-        l.addLast("dd");
+        l.insert(0, "aa");
+        l.insert(1, "bb");
+        l.insert(2, "cc");
+        l.insert(3, "dd");
 
-        l.removeLast();
+        l.remove(3);
         assertEquals(3, l.size());
         assertEquals("aa", l.get(0));
         assertEquals("bb", l.get(1));
@@ -105,51 +103,39 @@ public class MyArrayListTest {
     @Grade(1)
     public void remove_returnsRemovedValue() {
         MyArrayList l = new MyArrayList();
-        assertNull(l.removeLast());
         assertNull(l.remove(0));
 
-        l.addLast("aa");
-        l.addLast("bb");
-        l.addLast("cc");
-        l.addLast("dd");
+        l.insert(0, "aa");
+        l.insert(1, "bb");
+        l.insert(2, "cc");
+        l.insert(3, "dd");
 
-        assertEquals("dd", l.removeLast());
+        assertEquals("dd", l.remove(3));
         assertEquals("aa", l.remove(0));
-        assertNull(l.remove(-1));
+        assertNull(l.remove(3));
         assertNull(l.remove(2));
+        assertNull(l.remove(-1));
     }
 
     @Test
     @Grade(2)
     public void indexOf() {
         MyArrayList l = new MyArrayList();
-        l.addLast("aa");
-        l.addLast("bb");
-        l.addLast("cc");
-        l.addLast("dd");
+        l.insert(0, "aa");
+        l.insert(1, "bb");
+        l.insert(2, "cc");
+        l.insert(3, "dd");
         assertEquals(1, l.indexOf("bb"));
         assertEquals(-1, l.indexOf("ee"));
     }
 
     @Test
     @Grade(1)
-    public void contains() {
-        MyArrayList l = new MyArrayList();
-        l.addLast("aa");
-        l.addLast("bb");
-        l.addLast("cc");
-        l.addLast("dd");
-        assertTrue(l.contains("bb"));
-        assertFalse(l.contains("ee"));
-    }
-
-    @Test
-    @Grade(1)
     public void testToString() {
         MyArrayList l = new MyArrayList();
-        l.addLast("aa");
-        l.addLast("bb");
-        l.addLast("cc");
+        l.insert(0, "aa");
+        l.insert(1, "bb");
+        l.insert(2, "cc");
         assertTrue(l.toString().contains("aa"));
         assertTrue(l.toString().contains("bb"));
         assertTrue(l.toString().contains("cc"));
