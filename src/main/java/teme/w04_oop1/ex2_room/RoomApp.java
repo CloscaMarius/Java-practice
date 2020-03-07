@@ -27,7 +27,6 @@ class RoomApp {
 }
 
 
-//TODO: define your Room class here (or in a separate file in same package)
 //(using in it the existing Person class, done for previous exercise and placed in separate package)
 
 class Room {

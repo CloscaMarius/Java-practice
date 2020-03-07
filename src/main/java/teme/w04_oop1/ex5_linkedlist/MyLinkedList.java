@@ -5,8 +5,15 @@ package teme.w04_oop1.ex5_linkedlist;
  * and a link to the next cell in chain (will be null for last cell)
  */
 class Cell {
-    //TODO
+    String value;
+    Cell next = null;
+
+    public Cell(String i, Cell n) {
+        value = i;
+        next = n;
+    }
 }
+
 
 /**
  * Custom class, which stores a sequence of elements, of type String,
@@ -14,14 +21,30 @@ class Cell {
  * and a link to next cell.
  */
 public class MyLinkedList {
+    private Cell head;
+    private int index = 0;
 
-    //TODO!
+    public Cell getHead() {
+        return head;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    String[] newArray = new String[index];
 
     /**
      * Get the size of the list (number of elements it contains)
      */
     public int size() {
-        return -1;
+        Cell current = head;
+        int count = 0;
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+        return count;
     }
 
     /**

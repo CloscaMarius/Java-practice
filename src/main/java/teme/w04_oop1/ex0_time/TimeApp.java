@@ -28,7 +28,6 @@ class TimeApp {
     }
 }
 
-//TODO: define the new classes below (Time, TimeUtils - including necessary fields, constructors, methods...)
 
 class Time {
 

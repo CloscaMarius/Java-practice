@@ -13,7 +13,6 @@ class PointApp {
     }
 }
 
-//TODO: define your Point class here (or in a separate file in same package)
 class Point {
 
     private double x;
@@ -61,14 +60,6 @@ class Point {
         return dist12 + dist13 > dist23 && dist13 + dist23 > dist12 && dist12 + dist23 > dist13;
 
     }
-   /* static boolean positiveSides(double dist12, double dist13, double dist23) {
-        return dist12 > 0 && dist13 > 0 && dist23 > 0;
-    }
-    static boolean canFormValidTriangle(double dist12, double dist13, double dist23) {
-
-        return positiveSides(dist12, dist13, dist23) && canFormTriangle(Point p1, Point p2, Point p3);
-    }*/
-
 
     static boolean canFormRightAngledTriangle(Point p1, Point p2, Point p3) {
         double deltaX12 = pow((p1.x - p2.x), 2);

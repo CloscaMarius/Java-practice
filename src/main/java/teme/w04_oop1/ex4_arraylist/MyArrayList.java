@@ -131,7 +131,6 @@ class MyArrayList {
         if (arrayList == null || arrayList.length == 0) {
             return -1;
         }
-        //int index=0;
         for (int i = 0; i < arrayList.length; i++) {
             if (arrayList[i].equals(valueToFind)) {
                 return i;
