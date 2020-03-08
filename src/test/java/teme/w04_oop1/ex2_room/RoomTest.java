@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import teme.util.TestUtil;
 import teme.util.plugin.Grade;
 import teme.util.plugin.GradeRunner;
+import teme.w04_oop1.ex1_person.Person;
 
 import static org.junit.Assert.*;
 
@@ -23,10 +24,9 @@ public class RoomTest {
         assertEquals("", TestUtil.runCapturingOutput(() -> {
         }));
         assertTrue(true);
-        fail("TODO: Uncomment rest of tests when done!"); //and also comment out this line...
+        //fail("TODO: Uncomment rest of tests when done!"); //and also comment out this line...
     }
 
-    /*
     @Test
     @Grade(1)
     public void testPrintAll_givesNoExceptions() {
@@ -320,5 +320,4 @@ public class RoomTest {
         assertFalse(r.isPresent(new String("Ion")));
         assertEquals(0, r.getCount());
     }
-    */
 }

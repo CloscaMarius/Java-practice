@@ -19,10 +19,9 @@ public class PersonTest {
         //useless, but just to keep a few imports (needed for commented code) from being optimized
         assertEquals("", "");
         assertTrue(true);
-        fail("TODO: Uncomment rest of tests when done!"); //and also comment out this line...
+        //fail("TODO: Uncomment rest of tests when done!"); //and also comment out this line...
     }
 
-    /*
     @Test
     @Grade(2)
     public void test_constructorWith3Params_andGetters() {
@@ -76,5 +75,4 @@ public class PersonTest {
         assertTrue(p1.toString().contains("1989"));
         assertTrue(p1.toString().contains("black"));
     }
-    */
 }

@@ -19,10 +19,9 @@ public class TimeTest {
         //useless, but just to keep a few imports (needed for commented code) from being optimized
         assertEquals("", "");
         assertTrue(true);
-        fail("TODO: Uncomment rest of tests when done!"); //and also comment out this line...
+        //fail("TODO: Uncomment rest of tests when done!"); //and also comment out this line...
     }
 
-    /*
     @Test
     @Grade(2)
     public void testBuildTime() {
@@ -147,5 +146,4 @@ public class TimeTest {
         //may optionally end with "AM"/"PM"
         assertTrue(desc.endsWith("12") || desc.endsWith("AM") || desc.endsWith("PM"));
     }
-    */
 }
