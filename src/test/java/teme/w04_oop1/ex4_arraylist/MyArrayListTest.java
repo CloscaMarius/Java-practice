@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import teme.util.plugin.Grade;
 import teme.util.plugin.GradeRunner;
-import teme.w04_oop1.ex5_linkedlist.MyLinkedList;
 
 import static org.junit.Assert.*;
 
@@ -17,14 +16,14 @@ public class MyArrayListTest {
     @Test
     @Grade(1)
     public void size_whenEmpty() {
-        MyLinkedList l = new MyLinkedList();
+        MyArrayList l = new MyArrayList();
         assertEquals(0, l.size());
     }
 
     @Test
     @Grade(1)
     public void size_appendOne() {
-        MyLinkedList l = new MyLinkedList();
+        MyArrayList l = new MyArrayList();
         l.insert(0, "aa"); //append
         assertEquals(1, l.size());
         assertEquals("aa", l.get(0));
@@ -33,7 +32,7 @@ public class MyArrayListTest {
     @Test
     @Grade(1)
     public void size_appendMultiple_get() {
-        MyLinkedList l = new MyLinkedList();
+        MyArrayList l = new MyArrayList();
         l.insert(0, "aa"); //append
         l.insert(1, "bb"); //append
         l.insert(2, "cc"); //append
@@ -47,7 +46,7 @@ public class MyArrayListTest {
     @Test
     @Grade(1)
     public void size_insertOtherPositions_get() {
-        MyLinkedList l = new MyLinkedList();
+        MyArrayList l = new MyArrayList();
         l.insert(0, "cc"); //append
         l.insert(0, "aa"); //insert in front
         l.insert(1, "bb"); //insert in the middle
@@ -61,7 +60,7 @@ public class MyArrayListTest {
     @Test
     @Grade(1)
     public void insert_invalidIndex() {
-        MyLinkedList l = new MyLinkedList();
+        MyArrayList l = new MyArrayList();
         l.insert(-1, "X"); //ignored
         l.insert(1, "X"); //ignored
         assertEquals(0, l.size());
@@ -78,7 +77,7 @@ public class MyArrayListTest {
     @Test
     @Grade(2)
     public void set() {
-        MyLinkedList l = new MyLinkedList();
+        MyArrayList l = new MyArrayList();
         l.insert(0, "aa"); //append
         l.insert(1, "bb"); //append
         l.insert(2, "cc"); //append
@@ -110,7 +109,7 @@ public class MyArrayListTest {
     @Test
     @Grade(1)
     public void set_invalidIndex() {
-        MyLinkedList l = new MyLinkedList();
+        MyArrayList l = new MyArrayList();
 
         l.set(-1, "X"); //ignored
         l.set(1, "X"); //ignored
@@ -129,7 +128,7 @@ public class MyArrayListTest {
     @Test
     @Grade(2)
     public void remove_removes() {
-        MyLinkedList l = new MyLinkedList();
+        MyArrayList l = new MyArrayList();
         l.remove(0);
         l.remove(-1);
         l.remove(2);
@@ -158,7 +157,7 @@ public class MyArrayListTest {
     @Test
     @Grade(1)
     public void remove_returnsRemovedValue() {
-        MyLinkedList l = new MyLinkedList();
+        MyArrayList l = new MyArrayList();
         assertNull(l.remove(0));
 
         l.insert(0, "aa");
@@ -177,7 +176,7 @@ public class MyArrayListTest {
     @Test
     @Grade(1)
     public void indexOf() {
-        MyLinkedList l = new MyLinkedList();
+        MyArrayList l = new MyArrayList();
         l.insert(0, "aa");
         l.insert(1, "bb");
         l.insert(2, "cc");
@@ -192,7 +191,7 @@ public class MyArrayListTest {
     @Test
     @Grade(1)
     public void indexOf_missingValue() {
-        MyLinkedList l = new MyLinkedList();
+        MyArrayList l = new MyArrayList();
         l.insert(0, "aa");
         l.insert(1, "bb");
         l.insert(2, "cc");
@@ -206,7 +205,7 @@ public class MyArrayListTest {
     @Test
     @Grade(1)
     public void testToString() {
-        MyLinkedList l = new MyLinkedList();
+        MyArrayList l = new MyArrayList();
         l.insert(0, "aa");
         l.insert(1, "bb");
         l.insert(2, "cc");
