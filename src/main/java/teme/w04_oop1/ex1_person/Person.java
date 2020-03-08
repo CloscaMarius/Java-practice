@@ -1,9 +1,20 @@
 package teme.w04_oop1.ex1_person;
 
 public class Person {
+
     private String name;
     private int birthYear;
     private String hairColor;
+
+    public Person(String name, int birthYear, String hairColor) {
+        this.name = name;
+        this.birthYear = birthYear;
+        this.hairColor = hairColor;
+    }
+
+    public Person(String name, int birthYear) {
+        this(name, birthYear, "brown");
+    }
 
     public String getName() {
         return name;
@@ -19,16 +30,6 @@ public class Person {
 
     public void setHairColor(String hairColor) {
         this.hairColor = hairColor;
-    }
-
-    public Person(String name, int birthYear, String hairColor) {
-        this.name = name;
-        this.birthYear = birthYear;
-        this.hairColor = hairColor;
-    }
-
-    public Person(String name, int birthYear) {
-        this(name, birthYear, "brown");
     }
 
     boolean isOlderThan(Person other) {

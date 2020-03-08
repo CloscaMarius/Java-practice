@@ -9,7 +9,6 @@ class PointApp {
     public static void main(String[] args) {
         Point p1 = new Point(2, 3);
         System.out.println(p1.distanceTo(new Point(4, 5)));
-
     }
 }
 
@@ -28,19 +27,16 @@ class Point {
     }
 
     double distanceTo(Point other) {
-
         double deltaX = this.x - other.x;
         double deltaY = this.y - other.y;
 
         double dist = sqrt(pow(deltaX, 2) + pow(deltaY, 2));
-
         return dist;
     }
 
     void move(double deltaX, double deltaY) {
         this.x = x + deltaX;
         this.y = y + deltaY;
-
     }
 
     static boolean canFormTriangle(Point p1, Point p2, Point p3) {
@@ -58,7 +54,6 @@ class Point {
         double dist23 = sqrt(deltaX23 + deltaY23);
 
         return dist12 + dist13 > dist23 && dist13 + dist23 > dist12 && dist12 + dist23 > dist13;
-
     }
 
     static boolean canFormRightAngledTriangle(Point p1, Point p2, Point p3) {
@@ -80,6 +75,4 @@ class Point {
     static boolean pitagora(double dist12, double dist13, double dist23) {
         return dist12 * dist12 + dist13 * dist13 == dist23 * dist23;
     }
-
-
 }

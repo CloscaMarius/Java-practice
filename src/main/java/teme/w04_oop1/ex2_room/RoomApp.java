@@ -32,7 +32,6 @@ class RoomApp {
 class Room {
 
     private int capacity;
-
     Person[] persons = new Person[capacity];
 
     Room(int capacity) {
@@ -48,7 +47,6 @@ class Room {
     }
 
     void printAll() {
-
         System.out.println("Room capacity: " + capacity + "; persons in the room: " + getCount());
         if (persons.length == 0) {
             System.out.println("None");
@@ -87,6 +85,7 @@ class Room {
         return false;
     }
 
+
     String getOldest() {
         int n = persons.length;
         if (persons.length == 0 || persons == null) {
@@ -105,6 +104,7 @@ class Room {
         return persons[0].getName() + oldest;
     }
 
+
     String[] getNames(String hairColor) {
 
         int sameColorCount = 0;
@@ -120,10 +120,10 @@ class Room {
                 sameHairColor[i] = p.getName();
                 i++;
             }
-
         }
         return sameHairColor;
     }
+
 
     void exit(String personName) {
         if (persons == null || persons.length == 0 || indexOf(personName) == -1) {
@@ -150,6 +150,4 @@ class Room {
         return -1;
     }
 
-
 }
-
