@@ -52,19 +52,27 @@ public class PersonTest {
     @Test
     @Grade(3)
     public void testIsOlderThan() {
-        Person p1 = new Person("Ion", 1989, "black");
-        Person p2 = new Person("Geo", 1979, "red");
-        assertFalse(p1.isOlderThan(p2));
-        assertTrue(p2.isOlderThan(p1));
+        Person p1 = new Person("Geo", 1979, "red");
+        Person p2 = new Person("Ion", 1981, "black");
+        Person p3 = new Person("Ana", 1990, "red");
+
+        assertTrue(p1.isOlderThan(p2));
+        assertTrue(p2.isOlderThan(p3));
+        assertTrue(p1.isOlderThan(p3));
+
+        assertFalse(p2.isOlderThan(p1));
+        assertFalse(p3.isOlderThan(p2));
+        assertFalse(p3.isOlderThan(p1));
     }
 
     @Test
     @Grade(3)
     public void testGetAgeInYear() {
         Person p = new Person("Ion", 1989, "black");
+        assertEquals(0, p.getAgeInYear(1900));
+        assertEquals(0, p.getAgeInYear(1989));
         assertEquals(1, p.getAgeInYear(1990));
         assertEquals(41, p.getAgeInYear(2030));
-        assertEquals(0, p.getAgeInYear(1900));
     }
 
     @Test
