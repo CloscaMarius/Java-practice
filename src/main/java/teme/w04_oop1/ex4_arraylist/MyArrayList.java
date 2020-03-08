@@ -13,10 +13,9 @@ class MyArrayList {
     /**
      * Returns true if list is empty, false otherwise
      */
-    boolean isEmpty() {
-
+    /*boolean isEmpty() {
         return arrayList == null || arrayList.length == 0;
-    }
+    }*/
 
     /**
      * Get the size of the list (number of elements it contains)
@@ -33,7 +32,6 @@ class MyArrayList {
         if (index < arrayList.length && index >= 0) {
             return arrayList[index];
         }
-
         return null;
     }
 
@@ -47,24 +45,13 @@ class MyArrayList {
         }
     }
 
-
-    /**
-     * Add a new value at the END of the list
-     */
-    void addLast(String newValue) {
-        String[] newArray = Arrays.copyOf(arrayList, arrayList.length + 1);
-        newArray[newArray.length - 1] = newValue;
-        arrayList = newArray;
-
-
-    }
-
     /**
      * Insert a new value at the given position in the list,
      * shifting all elements after it with one position up.
      * (does nothing if index is invalid)
      */
     void insert(int index, String newValue) {
+
         if (index < arrayList.length && index >= 0) {
 
             String[] secondArrayList = new String[arrayList.length + 1];
@@ -79,6 +66,12 @@ class MyArrayList {
                 }
             }
             this.arrayList = secondArrayList;
+
+        } else if (index == arrayList.length) { //add last
+
+            String[] newArray = Arrays.copyOf(arrayList, arrayList.length + 1);
+            newArray[newArray.length - 1] = newValue;
+            arrayList = newArray;
         }
     }
 
@@ -86,16 +79,17 @@ class MyArrayList {
      * Remove the last element of the list, also returning its value
      * (does nothing if list is empty, returns null)
      */
-    String removeLast() {
+    /*String removeLast() {
         if (arrayList == null || arrayList.length == 0) {
             return null;
         }
+
         String[] newArray = Arrays.copyOf(arrayList, arrayList.length - 1);
         String lastElement = arrayList[arrayList.length - 1];
         this.arrayList = newArray;
 
         return lastElement;
-    }
+    }*/
 
     /**
      * Remove the element at the given index from the list,
@@ -103,12 +97,13 @@ class MyArrayList {
      * (does nothing if index is invalid)
      */
     String remove(int index) {
+
         if (arrayList == null
                 || index < 0
                 || index >= arrayList.length) {
-
             return null;
         }
+
         String[] anotherArray = new String[arrayList.length - 1];
         String removedElement = null;
         for (int i = 0, k = 0; i < arrayList.length; i++) {
@@ -143,7 +138,7 @@ class MyArrayList {
      * Searches for the given value in the list and returns true if found,
      * false if not found.
      */
-    boolean contains(String valueToFind) {
+    /*boolean contains(String valueToFind) {
         if (arrayList == null || arrayList.length == 0) {
             return false;
         }
@@ -153,7 +148,7 @@ class MyArrayList {
             }
         }
         return false;
-    }
+    }*/
 
     /**
      * Returns a String description of the list, which includes all
@@ -172,43 +167,41 @@ class MyArrayList {
 
         MyArrayList list = new MyArrayList();
         System.out.println("\nBefore any action: " + list); //[]
-        System.out.println("size: " + list.size() + ", isEmpty: " + list.isEmpty());
+        System.out.println("size: " + list.size());
 
-        list.addLast("aa");
-        list.addLast("bb");
-        list.addLast("cc");
-        list.addLast("dd");
+        list.insert(0, "aa");
+        list.insert(1, "bb");
+        list.insert(2, "cc");
+        list.insert(3, "dd");
         System.out.println("\nAfter adding 4 elements: " + list); //[aa, bb, cc, dd]
-        System.out.println("size: " + list.size() + ", isEmpty: " + list.isEmpty());
+        System.out.println("size: " + list.size()); //4
 
         System.out.println("\nindexOf(aa): " + list.indexOf("aa")); //0
         System.out.println("indexOf(cc): " + list.indexOf("cc")); //2
         System.out.println("indexOf(xx): " + list.indexOf("xx")); //-1
-        System.out.println("contains(cc): " + list.contains("cc")); //true
-        System.out.println("contains(xx): " + list.contains("xx")); //false
 
         System.out.println("\nget(2): " + list.get(2)); //cc
         System.out.println("get(5): " + list.get(5)); //null
 
-        list.insert(0, "ee"); //[ee, aa, bb, cc, dd]
-        System.out.println("\nAfter inserting 'ee' at index 0: " + list);
-        list.insert(3, "ff"); //[ee, aa, bb, ff, cc, dd]
-        System.out.println("After inserting 'ff' at index 3: " + list);
+        list.insert(0, "ee");
+        System.out.println("\nAfter inserting 'ee' at index 0: " + list);  //[ee, aa, bb, cc, dd]
+        list.insert(3, "ff");
+        System.out.println("After inserting 'ff' at index 3: " + list); //[ee, aa, bb, ff, cc, dd]
 
 
         list.set(5, "DD!");
-        System.out.println("\nAfter update(5, 'DD!'): " + list);
+        System.out.println("\nAfter update(5, 'DD!'): " + list); //[ee, aa, bb, ff, cc, DD!]
         list.set(10, "ZZ");
-        System.out.println("After update(10, 'ZZ'): " + list);
+        System.out.println("After update(10, 'ZZ'): " + list); //[ee, aa, bb, ff, cc, DD!]
 
 
-        String removed = list.removeLast();
+        String removed = list.remove(list.size() - 1);
         System.out.println("\nAfter removing last elem (" + removed + "): " + list); //[ee, aa, bb, ff, cc]
 
-        removed = list.remove(0); //[aa, bb, ff, cc]
-        System.out.println("\nAfter removing elem at index 0 (" + removed + "): " + list);
+        removed = list.remove(0);
+        System.out.println("\nAfter removing elem at index 0 (" + removed + "): " + list); //[aa, bb, ff, cc]
 
-        removed = list.remove(3); //[aa, bb, ff]
-        System.out.println("After removing elem at index 3 (" + removed + "): " + list);
+        removed = list.remove(3);
+        System.out.println("After removing elem at index 3 (" + removed + "): " + list); //[aa, bb, ff]
     }
 }
