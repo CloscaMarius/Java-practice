@@ -5,6 +5,8 @@ import org.junit.runner.RunWith;
 import teme.util.plugin.Grade;
 import teme.util.plugin.GradeRunner;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 /**
@@ -18,7 +20,7 @@ public class TimeTest {
     public void TODO_uncomment_rest_of_tests_when_done() {
         //useless, but just to keep a few imports (needed for commented code) from being optimized
         assertEquals("", "");
-        assertTrue(true);
+        assertTrue(Arrays.toString(new int[]{}).length() > 0);
         //fail("TODO: Uncomment rest of tests when done!"); //and also comment out this line...
     }
 
@@ -119,7 +121,7 @@ public class TimeTest {
     }
 
     @Test
-    @Grade(4)
+    @Grade(3)
     public void testFindLatest() {
         Time t0 = new Time(0, 0, 0);
         Time t1 = new Time(0, 0, 10);
@@ -129,6 +131,20 @@ public class TimeTest {
         Time t5 = new Time(23, 0, 5);
 
         assertEquals(t5, TimeUtils.findLatest(new Time[]{t0, t5, t3, t4, t1, t2}));
+    }
+
+    @Test
+    @Grade(1)
+    public void testFindLatest_shouldNotChangeArray() {
+        Time[] times = {
+                new Time(0, 30, 0),
+                new Time(1, 0, 0),
+                new Time(0, 40, 5)};
+        Time[] beforeCopy = Arrays.copyOf(times, times.length);
+        assertArrayEquals(beforeCopy, times);
+
+        TimeUtils.findLatest(times);
+        assertArrayEquals(beforeCopy, times);
     }
 
     @Test

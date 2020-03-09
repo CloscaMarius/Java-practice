@@ -63,7 +63,7 @@ public class RoomTest {
     }
 
     @Test
-    @Grade(2)
+    @Grade(1)
     public void testConstructorAndGetCapacity() {
         assertEquals(0, new Room(0).getCapacity());
         assertEquals(1, new Room(1).getCapacity());
@@ -245,6 +245,48 @@ public class RoomTest {
         p.setHairColor("blue");
         assertArrayEquals(new String[]{}, r.getNames("blond"));
         assertArrayEquals(new String[]{"Ioana"}, r.getNames("blue"));
+    }
+
+    @Test
+    @Grade(1)
+    public void testGetNames_getOldest_shouldNotChangePersonsPresentInRoom() {
+        Room r = new Room(5);
+        assertEquals(0, r.getCount());
+
+        r.getOldest();
+        r.getNames("brown");
+        r.getNames("??");
+        assertEquals(0, r.getCount());
+
+        //add persons
+        r.enter(new Person("Maria", 2001));
+        r.enter(new Person("Vasile", 1995));
+        r.enter(new Person("Mihaita", 1996));
+        r.enter(new Person("Iulia", 1995));
+        r.enter(new Person("Mircea", 1993));
+
+        //check
+        assertEquals(5, r.getCount());
+        assertTrue(r.isPresent("Maria"));
+        assertTrue(r.isPresent("Vasile"));
+        assertTrue(r.isPresent("Mihaita"));
+        assertTrue(r.isPresent("Iulia"));
+        assertTrue(r.isPresent("Mircea"));
+        assertFalse(r.isPresent("Ion"));
+
+        //call the 2 methods
+        r.getNames("brown");
+        r.getNames("??");
+        r.getOldest();
+
+        //check again, presence should be unchanged (but order is allowed to change..)
+        assertEquals(5, r.getCount());
+        assertTrue(r.isPresent("Maria"));
+        assertTrue(r.isPresent("Vasile"));
+        assertTrue(r.isPresent("Mihaita"));
+        assertTrue(r.isPresent("Iulia"));
+        assertTrue(r.isPresent("Mircea"));
+        assertFalse(r.isPresent("Ion"));
     }
 
     @Test
