@@ -6,6 +6,8 @@ import teme.util.plugin.Grade;
 import teme.util.plugin.GradeRunner;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -19,7 +21,8 @@ public class TimeTest {
     @Grade
     public void TODO_uncomment_rest_of_tests_when_done() {
         //useless, but just to keep a few imports (needed for commented code) from being optimized
-        assertEquals("", "");
+        List<?> list = Collections.EMPTY_LIST;
+        assertEquals(0, list.size());
         assertTrue(Arrays.toString(new int[]{}).length() > 0);
         //fail("TODO: Uncomment rest of tests when done!"); //and also comment out this line...
     }
@@ -123,23 +126,54 @@ public class TimeTest {
     @Test
     @Grade(3)
     public void testFindLatest() {
-        Time t0 = new Time(0, 0, 0);
-        Time t1 = new Time(0, 0, 10);
-        Time t2 = new Time(0, 29, 1);
-        Time t3 = new Time(0, 59, 0);
-        Time t4 = new Time(1, 0, 0);
-        Time t5 = new Time(23, 0, 5);
+        Time[] t = {
+                new Time(0, 0, 0),
+                new Time(0, 0, 10),
+                new Time(0, 29, 1),
+                new Time(0, 59, 0),
+                new Time(1, 5, 0),
+                new Time(2, 0, 3),
+                new Time(23, 0, 5)
+        };
 
-        assertEquals(t5, TimeUtils.findLatest(new Time[]{t0, t5, t3, t4, t1, t2}));
+        assertEquals(t[0], TimeUtils.findLatest(new Time[]{t[0]}));
+
+        for (int i = 0; i < t.length; i++) {
+            Time[] arr = new Time[]{t[i]};
+            Time exp = t[i];
+            assertEquals("findLatest() of " + Arrays.toString(arr), exp, TimeUtils.findLatest(arr));
+
+            for (int j = 0; j < t.length; j++) {
+                arr = new Time[]{t[i], t[j]};
+                exp = t[Math.max(i, j)];
+                assertEquals("findLatest() of " + Arrays.toString(arr), exp, TimeUtils.findLatest(arr));
+
+                for (int k = 0; k < t.length; k++) {
+                    arr = new Time[]{t[i], t[j], t[k]};
+                    exp = t[Math.max(i, Math.max(j, k))];
+                    assertEquals("findLatest() of " + Arrays.toString(arr), exp, TimeUtils.findLatest(arr));
+
+                    for (int l = 0; l < t.length; l++) {
+                        arr = new Time[]{t[i], t[j], t[k], t[l]};
+                        exp = t[Math.max(Math.max(i, j), Math.max(k, l))];
+
+                        //also shuffle them
+                        List<Time> list = Arrays.asList(arr);
+                        Collections.shuffle(list);
+                        arr = list.toArray(new Time[]{});
+
+                        assertEquals("findLatest() of " + Arrays.toString(arr), exp, TimeUtils.findLatest(arr));
+                    }
+                }
+            }
+        }
     }
 
     @Test
     @Grade(1)
     public void testFindLatest_shouldNotChangeArray() {
-        Time[] times = {
-                new Time(0, 30, 0),
-                new Time(1, 0, 0),
-                new Time(0, 40, 5)};
+        Time[] times = {new Time(0, 30, 0), new Time(1, 0, 0), new Time(0, 40, 5)};
+
         Time[] beforeCopy = Arrays.copyOf(times, times.length);
         assertArrayEquals(beforeCopy, times);
 
@@ -150,16 +184,27 @@ public class TimeTest {
     @Test
     @Grade(3)
     public void testDescriptionOf() {
-        String desc = TimeUtils.descriptionOf(new Time(10, 11, 12));
+        //test a few combinations
+        for (int h : Arrays.asList(0, 3, 7, 11)) {
+            for (int m : Arrays.asList(1, 15, 35, 59)) {
+                for (int s : Arrays.asList(2, 4, 13, 44, 59)) {
 
-        //description should contain all 3 fields, in the right order
-        assertTrue(desc.contains("10"));
-        assertTrue(desc.contains("11"));
-        assertTrue(desc.contains("12"));
-        assertTrue(desc.indexOf("10") < desc.indexOf("11"));
-        assertTrue(desc.indexOf("11") < desc.indexOf("12"));
+                    Time t = new Time(h, m, s);
+                    String desc = TimeUtils.descriptionOf(t);
 
-        //may optionally end with "AM"/"PM"
-        assertTrue(desc.endsWith("12") || desc.endsWith("AM") || desc.endsWith("PM"));
+                    //description should contain all 3 fields, in the right order
+                    assertTrue("descriptionOf() for time " + t + " should contain '" + h + "', '" + m + "' and '" + s + "', in this order; actual value: '" + desc + "'",
+                            desc.contains(String.valueOf(h)) &&
+                                    desc.contains(String.valueOf(m)) &&
+                                    desc.contains(String.valueOf(s)) &&
+                                    desc.indexOf(String.valueOf(h)) <= desc.indexOf(String.valueOf(m)) &&
+                                    desc.indexOf(String.valueOf(m)) <= desc.indexOf(String.valueOf(s)));
+
+                    //may end with the hour or optionally with "AM"/"PM"
+                    assertTrue("descriptionOf() for time " + t + " does not end with AM/PM or second",
+                            desc.endsWith(String.valueOf(s)) || desc.endsWith("AM") || desc.endsWith("PM"));
+                }
+            }
+        }
     }
 }
