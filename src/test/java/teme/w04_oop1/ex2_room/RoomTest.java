@@ -7,6 +7,8 @@ import teme.util.plugin.Grade;
 import teme.util.plugin.GradeRunner;
 import teme.w04_oop1.ex1_person.Person;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 /**
@@ -21,60 +23,60 @@ public class RoomTest {
         //useless, but just to keep a few imports (needed for commented code) from being optimized
         assertEquals("", TestUtil.runCapturingOutput(() -> {
         }));
-        assertTrue(true);
+        assertTrue(Arrays.toString(new int[]{}).length() > 0);
         //fail("TODO: Uncomment rest of tests when done!"); //and also comment out this line...
     }
 
     @Test
     @Grade(1)
     public void testPrintAll_givesNoExceptions() {
-        new Room(0).printAll();
-
-        Room r = new Room(1);
-        r.printAll();
-
-        r.enter(new Person("p1", 2019, "blue"));
-        r.printAll();
-
-        r = new Room(3);
-        r.printAll();
-        r.enter(new Person("p1", 2019, "blue"));
-        r.printAll();
-        r.enter(new Person("p2", 2019, "blue"));
-        r.printAll();
-        r.enter(new Person("p3", 2019, "blue"));
-        r.printAll();
+        for (int capacity = 0; capacity <= 10; capacity++) {
+            Room r = new Room(capacity);
+            for (int i = 0; i < capacity; i++) {
+                Person p = new Person("name" + i, 2000 + i);
+                r.enter(p);
+                r.printAll(); //no exceptions here
+            }
+        }
     }
 
     @Test
     @Grade(1)
     public void testPrintAll_rightContent() {
-        Room r = new Room(7);
-        r.enter(new Person("aaa", 222, "red"));
-        r.enter(new Person("bbb", 444, "green"));
-        r.enter(new Person("ccc", 666, "blue"));
-
-        String out = TestUtil.runCapturingOutput(r::printAll);
-        assertTrue(out.contains("7"));
-        assertTrue(out.contains("3"));
-        assertTrue(out.contains("aaa") && out.contains("222") && out.contains("red"));
-        assertTrue(out.contains("bbb") && out.contains("444") && out.contains("green"));
-        assertTrue(out.contains("ccc") && out.contains("666") && out.contains("blue"));
+        for (int capacity = 0; capacity <= 10; capacity++) {
+            Room r = new Room(capacity);
+            for (int i = 0; i < capacity; i++) {
+                Person p = new Person("name" + i, 2000 + i, "color" + i);
+                r.enter(p);
+                if (i > 0) { //skip testing for empty room (undefined requirements)
+                    String out = TestUtil.runCapturingOutput(r::printAll);
+                    assertTrue(out.contains(String.valueOf(capacity)));
+                    assertTrue(out.contains(String.valueOf(i)));
+                    for (int j = 0; j <= i; j++) {
+                        for (String term : Arrays.asList("name" + j, String.valueOf(2000 + j), "color" + j)) {
+                            assertTrue("output of room .printAll() expected to contain '" + term + "', but didn't, output was: '" + out + "'",
+                                    out.contains(term));
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @Test
     @Grade(1)
     public void testConstructorAndGetCapacity() {
-        assertEquals(0, new Room(0).getCapacity());
-        assertEquals(1, new Room(1).getCapacity());
-        assertEquals(3, new Room(3).getCapacity());
-        assertEquals(100, new Room(100).getCapacity());
+        for (int c = 0; c < 100; c = c * 2 + 1) {
+            assertEquals(c, new Room(c).getCapacity());
+        }
     }
 
     @Test
     @Grade(1)
     public void testGetCount_emptyRoom() {
-        assertEquals(0, new Room(0).getCount());
+        for (int c = 0; c < 100; c = c * 2 + 1) {
+            assertEquals(0, new Room(c).getCount());
+        }
     }
 
     @Test
@@ -144,10 +146,10 @@ public class RoomTest {
     @Test
     @Grade(1)
     public void testIsPresent_emptyRoom() {
-        assertFalse(new Room(0).isPresent("DarthVader"));
-        assertFalse(new Room(0).isPresent(""));
-        assertFalse(new Room(2).isPresent("DarthVader"));
-        assertFalse(new Room(2).isPresent(""));
+        for (int c = 0; c <= 100; c = c * 4 + 1) {
+            assertFalse(new Room(c).isPresent("DarthVader"));
+            assertFalse(new Room(c).isPresent(""));
+        }
     }
 
     @Test
@@ -176,8 +178,9 @@ public class RoomTest {
     @Test
     @Grade(1)
     public void testGetOldest_emptyRoom() {
-        assertEquals("", new Room(0).getOldest());
-        assertEquals("", new Room(3).getOldest());
+        for (int c = 0; c <= 100; c = c * 3 + 1) {
+            assertEquals("for empty room of capacity " + c + " getOldest() should work and return empty string", "", new Room(c).getOldest());
+        }
     }
 
     @Test
@@ -203,12 +206,10 @@ public class RoomTest {
     @Test
     @Grade(1)
     public void testGetNames_emptyRoom() {
-        assertArrayEquals(new String[]{}, new Room(0).getNames("red"));
-        assertArrayEquals(new String[]{}, new Room(0).getNames(""));
-        assertArrayEquals(new String[]{}, new Room(1).getNames("red"));
-        assertArrayEquals(new String[]{}, new Room(1).getNames(""));
-        assertArrayEquals(new String[]{}, new Room(3).getNames("red"));
-        assertArrayEquals(new String[]{}, new Room(3).getNames(""));
+        for (int c = 0; c <= 100; c = c * 2 + 1) {
+            assertArrayEquals(new String[]{}, new Room(c).getNames("red"));
+            assertArrayEquals(new String[]{}, new Room(c).getNames(""));
+        }
     }
 
     @Test
@@ -251,11 +252,6 @@ public class RoomTest {
     @Grade(1)
     public void testGetNames_getOldest_shouldNotChangePersonsPresentInRoom() {
         Room r = new Room(5);
-        assertEquals(0, r.getCount());
-
-        r.getOldest();
-        r.getNames("brown");
-        r.getNames("??");
         assertEquals(0, r.getCount());
 
         //add persons
