@@ -313,9 +313,5 @@ public class RoomTest {
         //noinspection StringOperationCanBeSimplified
         assertTrue(r.isPresent(new String("Ion")));
         assertArrayEquals(new String[]{"Ion"}, r.getNames(new String("blond")));
-
-        r.exit(new String("Ion"));
-        assertFalse(r.isPresent(new String("Ion")));
-        assertEquals(0, r.getCount());
     }
 }
