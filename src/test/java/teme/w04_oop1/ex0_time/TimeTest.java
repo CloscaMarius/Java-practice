@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- * MAX GRADE: 28p
+ * MAX GRADE: 28+2p
  */
 @RunWith(GradeRunner.class)
 public class TimeTest {
@@ -199,12 +199,23 @@ public class TimeTest {
                                     desc.contains(String.valueOf(s)) &&
                                     desc.indexOf(String.valueOf(h)) <= desc.indexOf(String.valueOf(m)) &&
                                     desc.indexOf(String.valueOf(m)) <= desc.indexOf(String.valueOf(s)));
-
-                    //may end with the hour or optionally with "AM"/"PM"
-                    assertTrue("descriptionOf() for time " + t + " does not end with AM/PM or second",
-                            desc.endsWith(String.valueOf(s)) || desc.endsWith("AM") || desc.endsWith("PM"));
                 }
             }
+        }
+    }
+
+    @Test
+    @Grade(2)
+    public void testDescriptionOf_endsWithAMPM() {
+
+        for (int h = 0; h <= 23; h++) {
+            Time t = new Time(h, 1, 2);
+            String desc = TimeUtils.descriptionOf(t).toUpperCase();
+            String hs = String.valueOf(h <= 12 ? h : h - 12);
+            String suf = h <= 12 ? "AM" : "PM";
+            //may end with the hour or optionally with "AM"/"PM"
+            assertTrue("descriptionOf() for time " + t + " does not end with '" + suf + "': '" + desc + "'", desc.endsWith(suf));
+            assertTrue("descriptionOf() for time " + t + " should contain '" + hs + "': '" + desc + "'", desc.contains(hs));
         }
     }
 }
