@@ -125,7 +125,7 @@ public class PointTest {
             for (Point p2 : points) {
                 for (Point p3 : points) {
                     if (p1 != p2 && p2 != p3 && p1 != p3) {
-                        assertTrue(Point.canFormRightAngledTriangle(p1, p2, p3));
+                        assertTrue("canFormRightAngledTriangle() should be true for these points, but was false: [" + p1 + "], [" + p2 + "], [" + p3 + "]", Point.canFormRightAngledTriangle(p1, p2, p3));
                     }
                 }
             }
