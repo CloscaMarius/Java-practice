@@ -141,17 +141,17 @@ public class TimeTest {
         for (int i = 0; i < t.length; i++) {
             Time[] arr = new Time[]{t[i]};
             Time exp = t[i];
-            assertEquals("findLatest() of " + Arrays.toString(arr), exp, TimeUtils.findLatest(arr));
+            assertEquals("findLatest() of " + Arrays.toString(arr), exp.toString(), TimeUtils.findLatest(arr).toString());
 
             for (int j = 0; j < t.length; j++) {
                 arr = new Time[]{t[i], t[j]};
                 exp = t[Math.max(i, j)];
-                assertEquals("findLatest() of " + Arrays.toString(arr), exp, TimeUtils.findLatest(arr));
+                assertEquals("findLatest() of " + Arrays.toString(arr), exp.toString(), TimeUtils.findLatest(arr).toString());
 
                 for (int k = 0; k < t.length; k++) {
                     arr = new Time[]{t[i], t[j], t[k]};
                     exp = t[Math.max(i, Math.max(j, k))];
-                    assertEquals("findLatest() of " + Arrays.toString(arr), exp, TimeUtils.findLatest(arr));
+                    assertEquals("findLatest() of " + Arrays.toString(arr), exp.toString(), TimeUtils.findLatest(arr).toString());
 
                     for (int l = 0; l < t.length; l++) {
                         arr = new Time[]{t[i], t[j], t[k], t[l]};
@@ -162,7 +162,7 @@ public class TimeTest {
                         Collections.shuffle(list);
                         arr = list.toArray(new Time[]{});
 
-                        assertEquals("findLatest() of " + Arrays.toString(arr), exp, TimeUtils.findLatest(arr));
+                        assertEquals("findLatest() of " + Arrays.toString(arr), exp.toString(), TimeUtils.findLatest(arr).toString());
                     }
                 }
             }
@@ -205,17 +205,40 @@ public class TimeTest {
     }
 
     @Test
-    @Grade(2)
+    @Grade(1)
     public void testDescriptionOf_endsWithAMPM() {
 
         for (int h = 0; h <= 23; h++) {
-            Time t = new Time(h, 1, 2);
-            String desc = TimeUtils.descriptionOf(t).toUpperCase();
-            String hs = String.valueOf(h <= 12 ? h : h - 12);
-            String suf = h <= 12 ? "AM" : "PM";
-            //may end with the hour or optionally with "AM"/"PM"
-            assertTrue("descriptionOf() for time " + t + " does not end with '" + suf + "': '" + desc + "'", desc.endsWith(suf));
-            assertTrue("descriptionOf() for time " + t + " should contain '" + hs + "': '" + desc + "'", desc.contains(hs));
+            if (h != 12) {
+                Time t = new Time(h, 1, 2);
+                String desc = TimeUtils.descriptionOf(t).toUpperCase();
+                String hs = String.valueOf(h <= 12 ? h : h - 12);
+                String suf = h < 12 ? "AM" : "PM";
+                //may end with the hour or optionally with "AM"/"PM"
+                assertTrue("descriptionOf() for time " + t + " does not end with '" + suf + "': '" + desc + "'", desc.endsWith(suf));
+                assertTrue("descriptionOf() for time " + t + " should contain '" + hs + "': '" + desc + "'", desc.contains(hs));
+            }
         }
+    }
+
+    @Test
+    @Grade(1)
+    public void testDescriptionOf_endsWithAMPM_trickyCases() {
+
+        //12:01 -> 12:01 PM  - see: https://www.timeanddate.com/time/am-and-pm.html
+        Time t = new Time(12, 0, 1);
+        String desc = TimeUtils.descriptionOf(t).toUpperCase();
+        String hs = "12";
+        String suf = "PM";
+        assertTrue("descriptionOf() for time " + t + " does not end with '" + suf + "': '" + desc + "'", desc.endsWith(suf));
+        assertTrue("descriptionOf() for time " + t + " should contain '" + hs + "': '" + desc + "'", desc.contains(hs));
+
+        //13:01 -> 1:01 PM
+        t = new Time(13, 0, 1);
+        desc = TimeUtils.descriptionOf(t).toUpperCase();
+        hs = "1";
+        suf = "PM";
+        assertTrue("descriptionOf() for time " + t + " does not end with '" + suf + "': '" + desc + "'", desc.endsWith(suf));
+        assertTrue("descriptionOf() for time " + t + " should contain '" + hs + "': '" + desc + "'", desc.contains(hs));
     }
 }
