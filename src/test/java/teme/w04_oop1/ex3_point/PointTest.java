@@ -77,10 +77,27 @@ public class PointTest {
     }
 
     @Test
-    @Grade(2)
+    @Grade(1)
     public void testCanFormTriangle() {
         Point p1 = new Point(0, 0);
         Point p2 = new Point(0, 4);
+        Point p3 = new Point(3, 0);
+        Point p4 = new Point(0, 2);
+
+        assertTrue(Point.canFormTriangle(p1, p2, p3));
+        assertTrue(Point.canFormTriangle(p1, p3, p2));
+        assertTrue(Point.canFormTriangle(p3, p2, p1));
+
+        assertFalse(Point.canFormTriangle(p1, p2, p4));
+        assertFalse(Point.canFormTriangle(p1, p4, p2));
+        assertFalse(Point.canFormTriangle(p4, p2, p1));
+    }
+
+    @Test
+    @Grade(1)
+    public void testCanFormTriangle_isoscel() {
+        Point p1 = new Point(0, 0);
+        Point p2 = new Point(0, 3);
         Point p3 = new Point(3, 0);
 
         Point p4 = new Point(0, 2);
@@ -97,17 +114,60 @@ public class PointTest {
     @Test
     @Grade(2)
     public void testCanFormRightAngledTriangle() {
+        //any 3 of these points can form a right angled triangle
+        Point[] points = {
+                new Point(0, 0),
+                new Point(0, 4),
+                new Point(3, 0),
+                new Point(3, 4)};
+
+        for (Point p1 : points) {
+            for (Point p2 : points) {
+                for (Point p3 : points) {
+                    if (p1 != p2 && p2 != p3 && p1 != p3) {
+                        assertTrue(Point.canFormRightAngledTriangle(p1, p2, p3));
+                    }
+                }
+            }
+        }
+    }
+
+    //does not really work for naive implementations which loose precisions
+    //(due to unnecessary sqrt() when checking pythagoras, due to using distanceTo())
+    //@Test
+    //@Grade(1)
+    public void testCanFormRightAngledTriangle_isoscel() {
+        Point p00 = new Point(0, 0);
+        Point p01 = new Point(0, 1);
+        Point p10 = new Point(1, 0);
+        Point p11 = new Point(1, 1);
+        Point p20 = new Point(2, 0);
+        Point p22 = new Point(2, 2);
+
+        assertTrue(Point.canFormRightAngledTriangle(p00, p01, p10));
+        assertTrue(Point.canFormRightAngledTriangle(p00, p10, p01));
+        assertTrue(Point.canFormRightAngledTriangle(p10, p01, p00));
+
+        assertTrue(Point.canFormRightAngledTriangle(p00, p11, p10));
+        assertTrue(Point.canFormRightAngledTriangle(p00, p10, p11));
+        assertTrue(Point.canFormRightAngledTriangle(p11, p01, p00));
+
+        assertTrue(Point.canFormRightAngledTriangle(p00, p11, p20));
+        assertTrue(Point.canFormRightAngledTriangle(p00, p20, p11));
+        assertTrue(Point.canFormRightAngledTriangle(p11, p20, p00));
+
+        assertTrue(Point.canFormRightAngledTriangle(p22, p11, p20));
+        assertTrue(Point.canFormRightAngledTriangle(p22, p20, p11));
+        assertTrue(Point.canFormRightAngledTriangle(p11, p20, p22));
+    }
+
+    @Test
+    @Grade(1)
+    public void testCanFormRightAngledTriangle_invalidCases() {
         Point p1 = new Point(0, 0);
         Point p2 = new Point(0, 4);
-        Point p3 = new Point(3, 0);
-
         Point p4 = new Point(0, 2);
-
         Point p5 = new Point(4, 2);
-
-        assertTrue(Point.canFormRightAngledTriangle(p1, p2, p3));
-        assertTrue(Point.canFormRightAngledTriangle(p1, p3, p2));
-        assertTrue(Point.canFormRightAngledTriangle(p3, p2, p1));
 
         assertFalse(Point.canFormRightAngledTriangle(p1, p2, p4));
         assertFalse(Point.canFormRightAngledTriangle(p1, p4, p2));
@@ -116,10 +176,24 @@ public class PointTest {
         assertFalse(Point.canFormRightAngledTriangle(p1, p2, p5));
         assertFalse(Point.canFormRightAngledTriangle(p1, p5, p2));
         assertFalse(Point.canFormRightAngledTriangle(p5, p2, p1));
+
+        Point p00 = new Point(0, 0);
+        Point p30 = new Point(3, 0);
+        Point p33 = new Point(3, 3);
+        Point p60 = new Point(6, 0);
+        Point p66 = new Point(6, 6);
+
+        assertFalse(Point.canFormRightAngledTriangle(p00, p33, p66));
+        assertFalse(Point.canFormRightAngledTriangle(p33, p66, p00));
+        assertFalse(Point.canFormRightAngledTriangle(p66, p00, p33));
+
+        assertFalse(Point.canFormRightAngledTriangle(p00, p30, p60));
+        assertFalse(Point.canFormRightAngledTriangle(p30, p60, p00));
+        assertFalse(Point.canFormRightAngledTriangle(p60, p00, p30));
     }
 
     @Test
-    @Grade(2)
+    @Grade(1)
     public void testCanFormTriangle_trickyCases() {
         Point p1 = new Point(2.5, 2.5);
         Point p2 = new Point(3.2, 3.2);
