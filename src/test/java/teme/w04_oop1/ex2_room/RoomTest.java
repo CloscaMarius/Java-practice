@@ -1,7 +1,5 @@
 package teme.w04_oop1.ex2_room;
 
-//import teme.w04_oop1.ex1_person.Person;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import teme.util.TestUtil;
