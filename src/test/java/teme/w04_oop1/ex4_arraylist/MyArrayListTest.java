@@ -126,7 +126,25 @@ public class MyArrayListTest {
     }
 
     @Test
-    @Grade(2)
+    @Grade(1)
+    public void get_invalidIndex() {
+        MyArrayList l = new MyArrayList();
+        assertEquals(0, l.size());
+
+        assertNull(l.get(-1));
+        assertNull(l.get(0));
+        assertNull(l.get(1));
+
+        l.insert(0, "aa");
+        assertEquals(1, l.size());
+
+        assertNull(l.get(-1));
+        assertNull(l.get(1));
+        assertNull(l.get(2));
+    }
+
+    @Test
+    @Grade(1)
     public void remove_removes() {
         MyArrayList l = new MyArrayList();
         l.remove(0);

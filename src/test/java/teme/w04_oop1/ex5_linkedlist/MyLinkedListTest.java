@@ -30,7 +30,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    @Grade(2)
+    @Grade(1)
     public void size_appendMultiple_get() {
         MyLinkedList l = new MyLinkedList();
         l.insert(0, "aa"); //append
@@ -123,6 +123,24 @@ public class MyLinkedListTest {
         l.set(2, "X"); //ignored
         assertEquals(1, l.size());
         assertEquals("aa", l.get(0));
+    }
+
+    @Test
+    @Grade(1)
+    public void get_invalidIndex() {
+        MyLinkedList l = new MyLinkedList();
+        assertEquals(0, l.size());
+
+        assertNull(l.get(-1));
+        assertNull(l.get(0));
+        assertNull(l.get(1));
+
+        l.insert(0, "aa");
+        assertEquals(1, l.size());
+
+        assertNull(l.get(-1));
+        assertNull(l.get(1));
+        assertNull(l.get(2));
     }
 
     @Test
