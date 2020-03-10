@@ -6,7 +6,7 @@ import java.util.Arrays;
  * Custom class, which stores a sequence of elements, of type String,
  * using an array of String values.
  */
-class MyArrayList {
+public class MyArrayList {
 
     String[] arrayList = new String[0];
 
@@ -20,7 +20,7 @@ class MyArrayList {
     /**
      * Get the size of the list (number of elements it contains)
      */
-    int size() {
+    public int size() {
         return arrayList.length;
     }
 
@@ -28,7 +28,7 @@ class MyArrayList {
      * Return the element at the specified index
      * (or null if index is invalid)
      */
-    String get(int index) {
+    public String get(int index) {
         if (index < arrayList.length && index >= 0) {
             return arrayList[index];
         }
@@ -39,7 +39,7 @@ class MyArrayList {
      * Update the element at a specified index
      * (does nothing if index is invalid)
      */
-    void set(int index, String newValue) {
+    public void set(int index, String newValue) {
         if (index < arrayList.length && index >= 0) {
             arrayList[index] = newValue;
         }
@@ -50,7 +50,7 @@ class MyArrayList {
      * shifting all elements after it with one position up.
      * (does nothing if index is invalid)
      */
-    void insert(int index, String newValue) {
+    public void insert(int index, String newValue) {
 
         if (index < arrayList.length && index >= 0) {
 
@@ -96,7 +96,7 @@ class MyArrayList {
      * shifting all elements after it with one position down.
      * (does nothing if index is invalid)
      */
-    String remove(int index) {
+    public String remove(int index) {
 
         if (arrayList == null
                 || index < 0
@@ -122,7 +122,7 @@ class MyArrayList {
      * Searches for the given value in the list, and returns the index
      * of its first apparition (or -1 if not found)
      */
-    int indexOf(String valueToFind) {
+    public int indexOf(String valueToFind) {
         if (arrayList == null || arrayList.length == 0) {
             return -1;
         }

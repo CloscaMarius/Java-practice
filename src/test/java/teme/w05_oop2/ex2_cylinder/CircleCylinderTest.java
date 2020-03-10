@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
 import static org.junit.Assert.*;
 
 /**
- * MAX GRADE: 25p
+ * MAX GRADE: 27p
  */
 @RunWith(GradeRunner.class)
 public class CircleCylinderTest {
@@ -55,9 +55,9 @@ public class CircleCylinderTest {
         assertTrue(c.toString().contains("2.5"));
     }
 
-    //--- CYLINDER-H = 7p ---//
+    //--- CYLINDER-H = 8p ---//
     @Test
-    @Grade(2)
+    @Grade(3)
     public void cylinderH_firstConstructor() {
         CylinderH c = new CylinderH(0.1, 0.2, 2.5, 3.5);
         assertEquals(3.5, c.getHeight(), PRECISION);
@@ -105,9 +105,9 @@ public class CircleCylinderTest {
     }
 
 
-    //--- CYLINDER-C ---//
+    //--- CYLINDER-C = 8p ---//
     @Test
-    @Grade(2)
+    @Grade(3)
     public void cylinderC_firstConstructor() {
         CylinderC c = new CylinderC(0.1, 0.2, 2.5, 3.5);
         assertEquals(3.5, c.getHeight(), PRECISION);
