@@ -6,8 +6,8 @@ package teme.w05_oop2.ex4_list;
 public class MyList_ManualTests {
     public static void main(String[] args) {
         /*
-        MyList l1 = new MyArrayList2();
-        //MyList l1 = new MyLinkedList2(); //should work with this one too!
+        MyList l1 = new MyArrayList();
+        //MyList l1 = new MyLinkedList(); //should work with this one too!
 
         l1.add("bb");
         l1.add("cc");
