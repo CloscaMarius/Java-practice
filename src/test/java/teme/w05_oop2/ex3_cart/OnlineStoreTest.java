@@ -213,7 +213,7 @@ public class OnlineStoreTest {
     }
 
     @Test
-    @Grade(2)
+    @Grade(1)
     public void cart_computeTotal_oneProduct_multipleDiscounts() {
         Cart cart = new Cart(someCustomer());
 
@@ -319,6 +319,86 @@ public class OnlineStoreTest {
         System.out.println("\nALL OPERATIONS - AFTER REPLACING PRODUCTS+DISCOUNTS:\n" + cart.generateInvoice());
         assertEquals(2061.9, cart.computeTotalPrice(), PRECISION);
     }
+
+    @Test
+    @Grade(1)
+    public void testCart_cartsShouldBeIndependent() {
+
+        Cart cart1 = new Cart(someCustomer());
+        Cart cart2 = new Cart(someCustomer());
+
+        assertEquals(0, cart1.computeTotalPrice(), PRECISION);
+        assertEquals(0, cart1.computeProductsPrice(), PRECISION);
+        assertEquals(0, cart2.computeTotalPrice(), PRECISION);
+        assertEquals(0, cart2.computeProductsPrice(), PRECISION);
+
+        cart1.addProduct(new Product(1, "p1 in cart1", "hat", 50, "black"));
+        assertEquals(50, cart1.computeTotalPrice(), PRECISION);
+        assertEquals(50, cart1.computeProductsPrice(), PRECISION);
+        assertEquals(0, cart2.computeTotalPrice(), PRECISION);
+        assertEquals(0, cart2.computeProductsPrice(), PRECISION);
+
+        cart2.addDiscount(new FixedDiscount(1));
+        assertEquals(50, cart1.computeProductsPrice(), PRECISION);
+        assertEquals(50, cart1.computeTotalPrice(), PRECISION);
+        assertEquals(0, cart2.computeProductsPrice(), PRECISION);
+        assertEquals(0, cart2.computeTotalPrice(), PRECISION);
+
+        cart1.addProduct(new Product(2, "p2 in cart1", "coat", 100, "black"));
+        cart2.addProduct(new Product(1, "p1 in cart2", "napkin", 5, "white"));
+        assertEquals(150, cart1.computeProductsPrice(), PRECISION);
+        assertEquals(150, cart1.computeTotalPrice(), PRECISION);
+        assertEquals(5, cart2.computeProductsPrice(), PRECISION);
+        assertEquals(4, cart2.computeTotalPrice(), PRECISION);
+
+        cart1.addDiscount(new PercentageDiscount(10));
+        assertEquals(135, cart1.computeTotalPrice(), PRECISION);
+        assertEquals(150, cart1.computeProductsPrice(), PRECISION);
+        assertEquals(4, cart2.computeTotalPrice(), PRECISION);
+        assertEquals(5, cart2.computeProductsPrice(), PRECISION);
+
+        cart2.addProduct(new Product(2, "p2 in cart2", "water", 3, "none"));
+        assertEquals(135, cart1.computeTotalPrice(), PRECISION);
+        assertEquals(150, cart1.computeProductsPrice(), PRECISION);
+        assertEquals(7, cart2.computeTotalPrice(), PRECISION);
+        assertEquals(8, cart2.computeProductsPrice(), PRECISION);
+
+        cart1.addDiscount(new FixedDiscount(5));
+        assertEquals(150, cart1.computeProductsPrice(), PRECISION);
+        assertEquals(130, cart1.computeTotalPrice(), PRECISION);
+        assertEquals(8, cart2.computeProductsPrice(), PRECISION);
+        assertEquals(7, cart2.computeTotalPrice(), PRECISION);
+
+        cart2.addDiscount(new PercentageDiscount(50));
+        assertEquals(130, cart1.computeTotalPrice(), PRECISION);
+        assertEquals(150, cart1.computeProductsPrice(), PRECISION);
+        assertEquals(3.5, cart2.computeTotalPrice(), PRECISION);
+        assertEquals(8, cart2.computeProductsPrice(), PRECISION);
+
+        Cart cart3 = new Cart(someCustomer());
+        cart3.addProduct(new Product(1, "p1 in cart 3", "food", 10, "brown"));
+        assertEquals(10, cart3.computeTotalPrice(), PRECISION);
+        assertEquals(10, cart3.computeProductsPrice(), PRECISION);
+
+        Cart cart4 = new Cart(someCustomer());
+        assertEquals(150, cart1.computeProductsPrice(), PRECISION);
+        assertEquals(8, cart2.computeProductsPrice(), PRECISION);
+        assertEquals(0, cart4.computeProductsPrice(), PRECISION);
+        assertEquals(10, cart3.computeTotalPrice(), PRECISION);
+
+        cart3.addDiscount(new PercentageDiscount(50));
+
+        assertEquals(150, cart1.computeProductsPrice(), PRECISION);
+        assertEquals(8, cart2.computeProductsPrice(), PRECISION);
+        assertEquals(0, cart4.computeProductsPrice(), PRECISION);
+        assertEquals(130, cart1.computeTotalPrice(), PRECISION);
+        assertEquals(3.5, cart2.computeTotalPrice(), PRECISION);
+        assertEquals(0, cart4.computeTotalPrice(), PRECISION);
+
+        assertEquals(5, cart3.computeTotalPrice(), PRECISION);
+        assertEquals(10, cart3.computeProductsPrice(), PRECISION);
+    }
+
 
     @Test
     @Grade(1)
