@@ -34,7 +34,6 @@ public class OnlineStoreTest {
     }
 
     /*
-
     private Customer someCustomer() {
         return new Customer("Ionel", "Popescu", "1234", new Address("Popauti", 72, "Iasi"));
     }
@@ -199,6 +198,21 @@ public class OnlineStoreTest {
     }
 
     @Test
+    @Grade(1)
+    public void cart_computeTotal_applyingDiscountsDoesNotChangeProductsPrice() {
+        Cart cart = new Cart(someCustomer());
+        cart.addProduct(new Product(1, "p1", "phone", 1900, "blue"));
+        cart.addDiscount(new PercentageDiscount(10));
+
+        assertEquals(1900, cart.computeProductsPrice(), PRECISION);
+        assertEquals(1710, cart.computeTotalPrice(), PRECISION);
+
+        //repeated computations return same values
+        assertEquals(1900, cart.computeProductsPrice(), PRECISION);
+        assertEquals(1710, cart.computeTotalPrice(), PRECISION);
+    }
+
+    @Test
     @Grade(2)
     public void cart_computeTotal_oneProduct_multipleDiscounts() {
         Cart cart = new Cart(someCustomer());
@@ -214,7 +228,7 @@ public class OnlineStoreTest {
     }
 
     @Test
-    @Grade(2)
+    @Grade(1)
     public void cart_computeTotal_oneProduct_addRemoveDiscounts() {
         Cart cart = new Cart(someCustomer());
 
@@ -244,18 +258,23 @@ public class OnlineStoreTest {
         cart.addDiscount(new PercentageDiscount(10));
 
         cart.addProduct(new Product(1, "p1", "phone", 1900, "blue"));
+        //products: 1900; apply 1st discount: 1900-99=1801; apply 2nd: 1801 - 180.1 (10%) = 1620.9
         assertEquals(1620.9, cart.computeTotalPrice(), PRECISION);
 
         cart.addProduct(new Product(2, "p2", "watch", 490, "black"));
+        //products: 1900+490=2390; apply 1st discount: 2390-99=2291; apply 2nd: 2291 - 229.1(10%) = 2061.9
         assertEquals(2061.9, cart.computeTotalPrice(), PRECISION);
 
         cart.addProduct(new Product(3, "p3", "hat", 99, "white"));
+        //products: 1900+490+99=2489; apply 1st discount: 2489-99=2390; apply 2nd: 2390 - 239(10%) = 2151
         assertEquals(2151.0, cart.computeTotalPrice(), PRECISION);
 
         cart.addDiscount(new FixedDiscount(51));
+        //products: 2489; apply 1st+2nd: 2151 (as above); apply 3rd disc: 2151 - 51 = 2100
         assertEquals(2100.0, cart.computeTotalPrice(), PRECISION);
 
         cart.addDiscount(new PercentageDiscount(5));
+        //products: 2489; apply 1st+2nd+3rd: 2100; apply 4th disc: 2100 - 105(5%) = 1995
         assertEquals(1995.0, cart.computeTotalPrice(), PRECISION);
     }
 
