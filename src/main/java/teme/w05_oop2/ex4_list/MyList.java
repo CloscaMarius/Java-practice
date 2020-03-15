@@ -6,6 +6,28 @@ package teme.w05_oop2.ex4_list;
  */
 public interface MyList {
 
-    //TODO
+    int size();
+
+    String get(int index);
+
+    void set(int index, String newValue);
+
+    void insert(int index, String newValue);
+
+    String remove(int index);
+
+    int indexOf(String valueToFind);
+
+    boolean isEmpty();
+
+    boolean contains(String valueToFind);
+
+    void add(String newValue);
+
+    void addFirst(String newValue);
+
+    String remove();
+
+    String removeFirst();
 
 }

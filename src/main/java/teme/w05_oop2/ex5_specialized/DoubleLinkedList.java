@@ -34,4 +34,64 @@ class DoubleLinkedList implements MyList {
         System.out.println("after insert(3,'dd'): " + list);
         */
     }
+
+    @Override
+    public int size() {
+        return 0;
+    }
+
+    @Override
+    public String get(int index) {
+        return null;
+    }
+
+    @Override
+    public void set(int index, String newValue) {
+
+    }
+
+    @Override
+    public void insert(int index, String newValue) {
+
+    }
+
+    @Override
+    public String remove(int index) {
+        return null;
+    }
+
+    @Override
+    public int indexOf(String valueToFind) {
+        return 0;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public boolean contains(String valueToFind) {
+        return false;
+    }
+
+    @Override
+    public void add(String newValue) {
+
+    }
+
+    @Override
+    public void addFirst(String newValue) {
+
+    }
+
+    @Override
+    public String remove() {
+        return null;
+    }
+
+    @Override
+    public String removeFirst() {
+        return null;
+    }
 }

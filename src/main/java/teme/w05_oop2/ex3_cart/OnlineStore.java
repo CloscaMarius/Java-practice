@@ -10,6 +10,13 @@ import teme.w05_oop2.ex3_cart.discount.PercentageDiscount;
 import teme.w05_oop2.ex3_cart.product.Product;
 */
 
+import teme.w05_oop2.ex3_cart.customer.Address;
+import teme.w05_oop2.ex3_cart.customer.Customer;
+import teme.w05_oop2.ex3_cart.discount.Discount;
+import teme.w05_oop2.ex3_cart.discount.FixedDiscount;
+import teme.w05_oop2.ex3_cart.discount.PercentageDiscount;
+import teme.w05_oop2.ex3_cart.product.Product;
+
 class OnlineStore {
 
     public static void main(String[] args) {
@@ -17,7 +24,6 @@ class OnlineStore {
         //TODO: uncomment these (and the commented imports above) after you created/completed the required classes (Cart,Customer,etc)
         //(then also uncomment/run the unit tests)
 
-        /*
         Customer cust = new Customer("Ionel", "Popescu", "1234", new Address("Popauti", 1, "Iasi"));
 
         Cart cart = new Cart(cust);
@@ -43,6 +49,5 @@ class OnlineStore {
         cart.addDiscount(new PercentageDiscount(15));
 
         System.out.println("\nAfter replacing a product and a discount:\n" + cart.generateInvoice());
-        */
     }
 }
