@@ -28,8 +28,8 @@ public class CircleCylinderTest {
 
     //--- CIRCLE = 4p ---//
     @Test
-    @Grade(2)
-    public void circle_properties() {
+    @Grade(1)
+    public void circle_constructorAndGetters() {
         Circle c = new Circle(0.1, 0.2, 2.5);
         assertEquals(0.1, c.getCenterX(), PRECISION);
         assertEquals(0.2, c.getCenterY(), PRECISION);
@@ -38,9 +38,15 @@ public class CircleCylinderTest {
 
     @Test
     @Grade(1)
-    public void circle_computations() {
+    public void circle_computeArea() {
         Circle c = new Circle(0.1, 0.2, 2.5);
         assertEquals(19.634, c.area(), PRECISION);
+    }
+
+    @Test
+    @Grade(1)
+    public void circle_computeLength() {
+        Circle c = new Circle(0.1, 0.2, 2.5);
         assertEquals(15.707, c.length(), PRECISION);
     }
 
@@ -76,10 +82,16 @@ public class CircleCylinderTest {
     }
 
     @Test
-    @Grade(2)
-    public void cylinderH_computations() {
+    @Grade(1)
+    public void cylinderH_computeVolume() {
         CylinderH c = new CylinderH(0.1, 0.2, 2.5, 3.5);
         assertEquals(68.722, c.volume(), PRECISION);
+    }
+
+    @Test
+    @Grade(1)
+    public void cylinderH_computeArea() {
+        CylinderH c = new CylinderH(0.1, 0.2, 2.5, 3.5);
         assertEquals(94.247, c.area(), PRECISION);
     }
 
@@ -126,10 +138,16 @@ public class CircleCylinderTest {
     }
 
     @Test
-    @Grade(2)
-    public void cylinderC_computations() {
+    @Grade(1)
+    public void cylinderC_computeVolume() {
         CylinderC c = new CylinderC(0.1, 0.2, 2.5, 3.5);
         assertEquals(68.722, c.volume(), PRECISION);
+    }
+
+    @Test
+    @Grade(1)
+    public void cylinderC_computeArea() {
+        CylinderC c = new CylinderC(0.1, 0.2, 2.5, 3.5);
         assertEquals(94.247, c.area(), PRECISION);
     }
 
@@ -220,8 +238,8 @@ public class CircleCylinderTest {
     @Grade(1)
     public void cylinderInterface_hasDefaultMethod_volume() {
         try {
-            Method m = Cylinder.class.getMethod("area");
-            assertTrue("Cylinder.area() method should have a default implementation", m.isDefault());
+            Method m = Cylinder.class.getMethod("volume");
+            assertTrue("Cylinder.volume() method should have a default implementation", m.isDefault());
         } catch (NoSuchMethodException e) {
             fail("Cylinder.volume() method should exist");
         }
