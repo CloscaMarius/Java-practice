@@ -4,17 +4,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import teme.util.plugin.Grade;
 import teme.util.plugin.GradeRunner;
-
-import static org.junit.Assert.*;
-
-/*
 import teme.w05_oop2.ex3_cart.customer.Address;
 import teme.w05_oop2.ex3_cart.customer.Customer;
 import teme.w05_oop2.ex3_cart.discount.Discount;
 import teme.w05_oop2.ex3_cart.discount.FixedDiscount;
 import teme.w05_oop2.ex3_cart.discount.PercentageDiscount;
 import teme.w05_oop2.ex3_cart.product.Product;
-*/
+
+import static org.junit.Assert.*;
 
 /**
  * MAX GRADE: 30p
@@ -30,10 +27,9 @@ public class OnlineStoreTest {
         //useless, but just to keep a few imports (needed for commented code) from being optimized
         assertNotEquals(true, false);
         assertTrue(true);
-        fail("TODO: Uncomment rest of tests when done!"); //and also comment out this line...
+        //fail("TODO: Uncomment rest of tests when done!"); //and also comment out this line...
     }
 
-    /*
     private Customer someCustomer() {
         return new Customer("Ionel", "Popescu", "1234", new Address("Popauti", 72, "Iasi"));
     }
@@ -500,5 +496,4 @@ public class OnlineStoreTest {
         assertTrue(invoice.contains("89"));   //discount 1 value should appear
         assertTrue(invoice.contains("25"));   //discount 2 value should appear
     }
-    */
 }

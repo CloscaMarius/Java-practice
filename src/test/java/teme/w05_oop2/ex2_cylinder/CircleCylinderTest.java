@@ -21,10 +21,9 @@ public class CircleCylinderTest {
         //useless, but just to keep a few imports (needed for commented code) from being optimized
         assertEquals(Method.class, Method.class);
         assertTrue(true);
-        fail("TODO: Uncomment rest of tests when done!"); //and also comment out this line...
+        //fail("TODO: Uncomment rest of tests when done!"); //and also comment out this line...
     }
 
-    /*
     private static final double PRECISION = 0.001;
 
     //--- CIRCLE = 4p ---//
@@ -227,5 +226,4 @@ public class CircleCylinderTest {
             fail("Cylinder.volume() method should exist");
         }
     }
-    */
 }

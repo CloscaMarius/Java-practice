@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import teme.util.plugin.Grade;
 import teme.util.plugin.GradeRunner;
-import teme.w04_oop1.ex4_arraylist.MyArrayList;
 
 import static org.junit.Assert.*;
 
@@ -20,10 +19,9 @@ public class MyListTest {
         //useless, but just to keep a few imports (needed for commented code) from being optimized
         assertEquals(MyArrayList.class, MyArrayList.class);
         assertTrue(true);
-        fail("TODO: Uncomment rest of tests when done!"); //and also comment out this line...
+        //fail("TODO: Uncomment rest of tests when done!"); //and also comment out this line...
     }
 
-    /*
     private MyList newList() {
         return (MyList) new MyArrayList();
         //return (MyList) new MyLinkedList(); //may try also with this one, if implemented
@@ -151,5 +149,4 @@ public class MyListTest {
         assertNull(list.removeFirst());
         assertEquals(0, list.size());
     }
-    */
 }
