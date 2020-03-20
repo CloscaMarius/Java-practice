@@ -8,11 +8,15 @@ class Josephus {
     static int eliminate(int total, int step) {
         System.out.println("\nTotal soldiers: " + total + ", will eliminate them with step: " + step);
 
-        //TODO!!
-        int remaining = -1;
+        int result = 0;
+        for (int i = 1; i <= total; i++) {
+            result = (result + step) % i;
+        }
+        int remaining = result + 1;
 
         System.out.println("Last standing: " + remaining);
         return remaining;
+
     }
 
 
@@ -20,6 +24,7 @@ class Josephus {
      * Some manual tests
      */
     public static void main(String[] args) {
+
         eliminate(1, 1);
         eliminate(3, 1);
         eliminate(5, 2);
