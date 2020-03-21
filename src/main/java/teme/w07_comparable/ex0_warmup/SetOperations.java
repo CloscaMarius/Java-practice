@@ -7,18 +7,30 @@ import java.util.Set;
 class SetOperations {
 
     static Set<String> union(Set<String> set1, Set<String> set2) {
-        //TODO
-        return null;
+        Set<String> union = new HashSet<>(set1);
+        union.addAll(set2);
+        return union;
     }
 
     static Set<String> intersection(Set<String> set1, Set<String> set2) {
-        //TODO
-        return null;
+        Set<String> newSet = new HashSet<>();
+        for (String str1 : set1) {
+            for (String str2 : set2) {
+                if (str1 == str2) {
+                    newSet.add(str1);
+                }
+            }
+        }
+        return newSet;
     }
 
     static Set<String> difference(Set<String> set1, Set<String> set2) {
-        //TODO
-        return null;
+        Set<String> newSet = intersection(set1, set2);
+        Set<String> AnotherNewSet = new HashSet<>(set1);
+        for (String str : newSet) {
+            AnotherNewSet.remove(str);
+        }
+        return AnotherNewSet;
     }
 
 
