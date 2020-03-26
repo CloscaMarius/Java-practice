@@ -32,7 +32,6 @@ public class CountingWordsTest {
         assertTrue(CountingWords.distinctSortedWords("").isEmpty());
         assertTrue(CountingWords.wordsUsageCount("").isEmpty());
         assertTrue(CountingWords.wordsUsageCountSortedByWord("").isEmpty());
-        assertTrue(CountingWords.wordsUsageCountSortedByCountThenWord("").isEmpty());
     }
 
     @Test
@@ -103,7 +102,7 @@ public class CountingWordsTest {
     }
 
     @Test
-    @Grade(5)
+    @Grade(4)
     public void optional_wordsUsageCountSortedByCountThenWord() {
         assertEquals(1, CountingWords.wordsUsageCountSortedByCountThenWord("abc").size());
         assertEquals("abc", CountingWords.wordsUsageCountSortedByCountThenWord("abc").get(0).getKey());
@@ -112,5 +111,11 @@ public class CountingWordsTest {
         List<Map.Entry<String, Long>> usage = CountingWords.wordsUsageCountSortedByCountThenWord("ef cd cd cd ab ab ab gh ef ef ef ef");
         assertArrayEquals(new String[]{"ef", "ab", "cd", "gh"}, usage.stream().map(Map.Entry::getKey).toArray());
         assertArrayEquals(new Long[]{5L, 3L, 3L, 1L}, usage.stream().map(Map.Entry::getValue).toArray());
+    }
+
+    @Test
+    @Grade(1)
+    public void optional_wordsUsageCountSortedByCountThenWord_empty() {
+        assertTrue(CountingWords.wordsUsageCountSortedByCountThenWord("").isEmpty());
     }
 }
