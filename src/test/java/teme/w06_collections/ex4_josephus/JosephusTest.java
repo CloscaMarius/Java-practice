@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 public class JosephusTest {
 
     @Rule
-    public Timeout globalTimeout = Timeout.seconds(10); // max running time allowed per each test method
+    public Timeout globalTimeout = Timeout.seconds(2); // max running time allowed per each test method
 
     @Test
     @Grade(5)
@@ -62,9 +62,18 @@ public class JosephusTest {
     }
 
     @Test
-    @Grade(5)
-    public void eliminate_stepOther() {
+    @Grade(2)
+    public void eliminate_stepOther1() {
+        assertEquals(1, Josephus.eliminate(1, 1));
+        assertEquals(2, Josephus.eliminate(2, 2));
         assertEquals(2, Josephus.eliminate(3, 3));
+        assertEquals(2, Josephus.eliminate(4, 4));
+        assertEquals(2, Josephus.eliminate(5, 5));
+    }
+
+    @Test
+    @Grade(3)
+    public void eliminate_stepOther2() {
         assertEquals(3, Josephus.eliminate(5, 2));
         assertEquals(4, Josephus.eliminate(5, 3));
         assertEquals(4, Josephus.eliminate(5, 7));
