@@ -1,6 +1,8 @@
 package teme.w06_collections.ex4_josephus;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
 import teme.util.plugin.Grade;
 import teme.util.plugin.GradeRunner;
@@ -12,6 +14,9 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(GradeRunner.class)
 public class JosephusTest {
+
+    @Rule
+    public Timeout globalTimeout = Timeout.seconds(10); // max running time allowed per each test method
 
     @Test
     @Grade(5)
