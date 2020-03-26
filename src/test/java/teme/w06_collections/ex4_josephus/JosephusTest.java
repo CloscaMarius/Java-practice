@@ -65,10 +65,12 @@ public class JosephusTest {
     @Grade(2)
     public void eliminate_stepOther1() {
         assertEquals(1, Josephus.eliminate(1, 1));
-        assertEquals(2, Josephus.eliminate(2, 2));
+        assertEquals(1, Josephus.eliminate(2, 2));
         assertEquals(2, Josephus.eliminate(3, 3));
         assertEquals(2, Josephus.eliminate(4, 4));
         assertEquals(2, Josephus.eliminate(5, 5));
+        assertEquals(4, Josephus.eliminate(6, 6));
+        assertEquals(5, Josephus.eliminate(7, 7));
     }
 
     @Test
