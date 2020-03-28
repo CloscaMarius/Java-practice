@@ -1,12 +1,48 @@
 package teme.w07_comparable.ex3_palindrome;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 class Palindrome {
 
     static boolean isSymmetrical(int[] array) {
-        //TODO
-        return false;
+        List<Integer> arrayList = new ArrayList<>();
+        for (int i : array) {
+            arrayList.add(i);
+        }
+        if (arrayList.size() <= 1) {
+            return true;
+        }
+        List<Integer> reversedArrayList = reverseList(arrayList);
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (!arrayList.get(i).equals(reversedArrayList.get(i)))
+                return false;
+        }
+        return true;
+    }
+
+    public static <T> List<T> reverseList(List<T> list) {
+        List<T> reverse = new ArrayList<>(list);
+        Collections.reverse(reverse);
+        return reverse;
+    }
+
+    static <E> boolean isSymmetrical_generic(E[] array) {
+        List<E> arrayList = new ArrayList<>();
+        for (E i : array) {
+            arrayList.add(i);
+        }
+        if (arrayList.size() <= 1) {
+            return true;
+        }
+        List<E> reversedArrayList = reverseList(arrayList);
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (!arrayList.get(i).equals(reversedArrayList.get(i)))
+                return false;
+        }
+        return true;
     }
 
     //OPTIONAL: make this generic version also work (similar to previous one, but should work with ANY type of object, not just int values)
@@ -19,8 +55,28 @@ class Palindrome {
 
 
     static boolean isPalindrome(String text) {
-        //TODO
-        return false;
+        if (text.trim().isEmpty()) {
+            return true;
+        }
+        String[] stringArray = text.toLowerCase().split("\\s+");
+        String words = "";
+        for (String s : stringArray) {
+            words += s;
+        }
+
+        char[] chars = words.toLowerCase().toCharArray();
+        List<Character> characters = new ArrayList<>();
+        for (char c : chars) {
+            characters.add(c);
+        }
+        List<Character> reversedCharacters = reverseList(characters);
+
+        for (int i = 0; i < characters.size(); i++) {
+            if (!characters.get(i).equals(reversedCharacters.get(i)))
+                return false;
+        }
+        return true;
+
     }
 
 

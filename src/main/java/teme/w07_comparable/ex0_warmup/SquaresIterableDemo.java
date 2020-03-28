@@ -38,25 +38,64 @@ class SquaresIterable implements Iterable<Long> {
      */
     @Override
     public Iterator<Long> iterator() {
-        //TODO
-        return null;
+        return new SquaresIterator();
     }
 }
 
 /**
  * The iterator which knows to iterate over the squares of natural numbers
  */
-class SquaresIterator { //todo: should implement Iterator interface
-    //TODO
+class SquaresIterator implements Iterator<Long> {
+
+    private long i = 0;
+
+    @Override
+    public boolean hasNext() {
+        return true;
+    }
+
+    @Override
+    public Long next() {
+        i++;
+        return i * i;
+    }
 }
 
 
 //--- OPTIONAL ---//
 
-class SquaresIterableWithLimit {
-    //TODO
+class SquaresIterableWithLimit implements Iterable<Long> {
+
+    private final long maxLimit;
+
+    SquaresIterableWithLimit(long maxLimit) {
+        this.maxLimit = maxLimit;
+    }
+
+    @Override
+    public Iterator<Long> iterator() {
+        return new SquaresIteratorWithLimit(maxLimit);
+    }
 }
 
-class SquaresIteratorWithLimit {
-    //TODO
+class SquaresIteratorWithLimit implements Iterator<Long> {
+
+    private long i = 0;
+    private final long maxLimit;
+
+    SquaresIteratorWithLimit(long maxLimit) {
+        this.maxLimit = maxLimit;
+    }
+
+    @Override
+    public boolean hasNext() {
+        //THIS IS THE DIFFERENCE !!
+        return i * i < maxLimit;
+    }
+
+    @Override
+    public Long next() {
+        i++;
+        return i * i;
+    }
 }

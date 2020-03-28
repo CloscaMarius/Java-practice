@@ -4,7 +4,11 @@ class Compute {
 
     int[] compute(int[] values, Function function) {
 
-        //TODO
-        return null;
+        int[] intArray = new int[values.length];
+        for (int i = 0; i < values.length; i++) {
+            intArray[i] = function.evaluate(values[i]);
+        }
+
+        return intArray;
     }
 }

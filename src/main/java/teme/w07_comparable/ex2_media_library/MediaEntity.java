@@ -1,16 +1,57 @@
 package teme.w07_comparable.ex2_media_library;
 
-class MediaEntity {
+import java.util.Objects;
 
-    //TODO: add fields, rest of methods, make it Comparable etc..
+class MediaEntity /*implements Comparable<MediaEntity>*/ {
+
+    private MediaType type;
+    private String title;
+    private int noOfDownloads;
 
     //Make the constructor protected (not public) to prevent construction of MediaEntity instances directly (only children are ok to be built)
     protected MediaEntity(MediaType type, String title, int noOfDownloads) {
-        //TODO
+        this.type = type;
+        this.title = title;
+        this.noOfDownloads = noOfDownloads;
     }
 
     String getTitle() {
-        //TODO
-        return null;
+        return title;
+    }
+
+    public MediaType getType() {
+        return type;
+    }
+
+    public int getNoOfDownloads() {
+        return noOfDownloads;
+    }
+
+    public void setNoOfDownloads(int noOfDownloads) {
+        this.noOfDownloads = noOfDownloads;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MediaEntity)) return false;
+        MediaEntity that = (MediaEntity) o;
+        return noOfDownloads == that.noOfDownloads &&
+                type == that.type &&
+                Objects.equals(title, that.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, title, noOfDownloads);
+    }
+
+    @Override
+    public String toString() {
+        return "MediaEntity{" +
+                "type=" + type +
+                ", title='" + title + '\'' +
+                ", noOfDownloads=" + noOfDownloads +
+                '}';
     }
 }
