@@ -15,7 +15,7 @@ public class LibraryManualTests {
         lib.getArchive().forEach(System.out::println);
 
         System.out.println("video1: " + lib.findByTitle("video1"));
-        System.out.println("video?: " + lib.findByTitle("video?"));
+        System.out.println("video_invalid: " + lib.findByTitle("video_invalid"));
 
         System.out.println("With 10-12 downloads: " + lib.findByNoOfDownloads(10, 12));
 
