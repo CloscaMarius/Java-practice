@@ -76,10 +76,6 @@ public class StockMarketTest {
         assertTrue(market.getUpdates(d1, d1, "").isEmpty());
         assertTrue(market.getUpdates(d1, d2, "").isEmpty());
         assertTrue(market.getUpdates(d2, d2, "").isEmpty());
-
-        assertTrue(market.getUpdates(d1, d1, null).isEmpty());
-        assertTrue(market.getUpdates(d1, d2, null).isEmpty());
-        assertTrue(market.getUpdates(d2, d2, null).isEmpty());
     }
 
     @Test
