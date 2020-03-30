@@ -2,14 +2,13 @@ package teme.w07_comparable.ex2_media_library;
 
 import java.util.Objects;
 
-class MediaEntity /*implements Comparable<MediaEntity>*/ {
+abstract class MediaEntity /*implements Comparable<MediaEntity>*/ {
 
     private MediaType type;
     private String title;
     private int noOfDownloads;
 
-    //Make the constructor protected (not public) to prevent construction of MediaEntity instances directly (only children are ok to be built)
-    protected MediaEntity(MediaType type, String title, int noOfDownloads) {
+    MediaEntity(MediaType type, String title, int noOfDownloads) {
         this.type = type;
         this.title = title;
         this.noOfDownloads = noOfDownloads;
