@@ -175,7 +175,7 @@ public class StreamsWarmupTest {
     public void allSquareNumbersBetween() {
         assertEquals(
                 Arrays.asList(1024, 1089, 1156, 1225, 1296, 1369, 1444, 1521, 1600, 1681, 1764, 1849, 1936, 2025, 2116, 2209, 2304, 2401, 2500),
-                StreamsWarmup.allSquareNumbersBetween(1000, 2500));
+                StreamsWarmup.allSquareNumbersBetween(1024, 2500));
     }
 
     @Test
@@ -203,7 +203,7 @@ public class StreamsWarmupTest {
     }
 
     @Test
-    @Grade(2)
+    @Grade(2) //OPTIONAL
     public void countChars() {
         Map<String, Long> expected = new HashMap<String, Long>() {{
             put(" ", 4L);
@@ -223,10 +223,10 @@ public class StreamsWarmupTest {
     }
 
     @Test
-    @Grade(3)
-    public void toNumbersThenFirst3BiggerThan10() {
+    @Grade(3) //OPTIONAL
+    public void toFlatList() {
         assertEquals(
-                Arrays.asList(12, 23, 100),
-                StreamsWarmup.toNumbersThenFirst3BiggerThan10(Arrays.asList("3", "12", "ooo", "-7", "ab5", "", "23", "x", "9", "100", "6", "123")));
+                Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9),
+                StreamsWarmup.toFlatList(new int[][]{{1, 2}, {3}, {4, 5, 6}, {7, 8, 9}}));
     }
 }

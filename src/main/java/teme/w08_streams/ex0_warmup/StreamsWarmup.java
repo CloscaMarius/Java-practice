@@ -91,7 +91,7 @@ class StreamsWarmup {
 
     //--- g) Flat map ---//
     //OPTIONAL
-    static List<Integer> toNumbersThenFirst3BiggerThan10(List<String> possibleNumbers) {
+    static List<Integer> toFlatList(int[][] array) {
         return null;
     }
 
@@ -144,7 +144,6 @@ class StreamsWarmup {
         System.out.println("allSquareNumbersBetween(1000, 2500) :" + allSquareNumbersBetween(1000, 2500));
 
         System.out.println("\ncountChars('eeaaabbccccdaaxxyyy'): " + countChars("eeaaabbccccdaaxxyyy"));
-        System.out.println("\ntoNumbersThenFirst3BiggerThan10([\"3\", \"23\", \"abc\", \"2\", \"11\", \"15\", \"7\", \"19\", \"x\"]):  "
-                + toNumbersThenFirst3BiggerThan10(Arrays.asList("3", "23", "abc", "2", "11", "15", "7", "19", "x")));
+        System.out.println("\ntoFlatList({{1, 2}, {3}, {4, 5, 6}, {7, 8}}): " + toFlatList(new int[][]{{1, 2}, {3}, {4, 5, 6}, {7, 8}}));
     }
 }
