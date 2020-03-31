@@ -405,7 +405,8 @@ public class StockMarketTest {
         assertEquals(0.0, market.getPrice(d1, "AMZ"), PRECISION);
         assertEquals(0.0, market.getPrice(d1, "GOOG"), PRECISION);
 
-        assertTrue(market.getPrices(d1).isEmpty());
+        assertEquals(0.0, market.getPrices(d1).getOrDefault("AMZ", 0.0), PRECISION);
+        assertEquals(0.0, market.getPrices(d1).getOrDefault("GOOG", 0.0), PRECISION);
 
         //at d2:
         assertEquals(1.2, market.getPrice(d2, "AMZ"), PRECISION);
@@ -463,14 +464,15 @@ public class StockMarketTest {
         assertEquals(0.0, market.getPrice(d1, "AMZ"), PRECISION);
         assertEquals(0.0, market.getPrice(d1, "GOOG"), PRECISION);
 
-        assertTrue(market.getPrices(d1).isEmpty());
+        assertEquals(0.0, market.getPrices(d1).getOrDefault("AMZ", 0.0), PRECISION);
+        assertEquals(0.0, market.getPrices(d1).getOrDefault("GOOG", 0.0), PRECISION);
 
         //at d2:
         assertEquals(0.0, market.getPrice(d2, "AMZ"), PRECISION);
         assertEquals(2.2, market.getPrice(d2, "GOOG"), PRECISION);
 
-        assertEquals(1, market.getPrices(d2).size());
         assertEquals(2.2, market.getPrices(d2).get("GOOG"), PRECISION);
+        assertEquals(0.0, market.getPrices(d2).getOrDefault("AMZ", 0.0), PRECISION);
 
         //at d3:
         assertEquals(1.3, market.getPrice(d3, "AMZ"), PRECISION);
