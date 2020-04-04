@@ -1,8 +1,8 @@
 package teme.w08_streams.ex0_warmup;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static java.util.Collections.emptyList;
 
@@ -10,89 +10,144 @@ class StreamsWarmup {
 
     //--- a) Common intermediary operations ---//
     static List<Integer> onlyBetween10And100(List<Integer> numbers) {
-        return null; //TODO
+        return numbers.stream()
+                .filter(n -> n > 10 && n < 100)
+                .collect(Collectors.toList());
     }
 
     static List<String> startWithLetterAndHaveLength(char letter, int wordLength, List<String> words) {
-        return null;
+        return words.stream()
+                .filter(s -> s.length() == wordLength
+                        && s.startsWith(String.valueOf(letter)))
+                .collect(Collectors.toList());
     }
 
     static List<String> withoutEmptyStringsAndChangedToUpperAndSorted(String[] arrayOfStrings) {
-        return null;
+        return Arrays.stream(arrayOfStrings)
+                .filter(s -> !s.trim().isEmpty())
+                .map(s -> s.toUpperCase())
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     static String addLetterForEvenOdd(List<Integer> numbers) {
-        return null;
+        return numbers.stream()
+                .map(n -> {
+                    if (n % 2 == 0) {
+                        return "e" + n;
+                    } else {
+                        return "o" + n;
+                    }
+                })
+                .collect(Collectors.joining(","));
     }
 
 
     //--- b) Other intermediary operations ---//
     static List<Integer> only3Smallest(Integer[] numbers) {
-        return null;
+        return Arrays.stream(numbers)
+                .sorted()
+                .limit(3)
+                .collect(Collectors.toList());
     }
 
     static List<Integer> only3SmallestNoDuplicates(Integer[] numbers) {
-        return null;
+        return Arrays.stream(numbers)
+                .distinct()
+                .sorted()
+                .limit(3)
+                .collect(Collectors.toList());
     }
 
     static List<Integer> only3BiggestNoDuplicates(Integer[] numbers) {
-        return null;
+        return Arrays.stream(numbers)
+                .distinct()
+                .sorted(Comparator.reverseOrder())
+                .limit(3)
+                .collect(Collectors.toList());
     }
 
 
     //--- c) Terminal operations ---//
     static long countOfEvenNumbers(List<Integer> numbers) {
-        return -1;
+        return numbers.stream().filter(n -> n % 2 == 0).count();
     }
 
     static void printPositives(double[] numbers) {
-
+        Arrays.stream(numbers)
+                .filter(n -> n > 0)
+                .forEach(System.out::println);
     }
 
     static boolean checkIfAllEven(List<Long> numbers) {
-        return false;
+        return numbers.stream().allMatch(n -> n % 2 == 0);
     }
 
     static String findNameOfFirstPersonWithHairColor(List<Person> persons, HairColor color) {
-        return null;
+        return persons.stream()
+                .filter(p -> p.getHairColor() == color)
+                .map(p -> p.getName())
+                .findFirst()
+                .orElse("NONE");
     }
 
 
     //--- d) Streams of primitives ---//
     static double averageAge(List<Person> persons) {
-        return -1;
+        return persons.stream()
+                .mapToInt(Person::getAge)
+                .average()
+                .orElse(0);
     }
 
     static String nameOfOldest(List<Person> persons) {
-        return null;
+        Optional<Person> maybeOldest = persons.stream()
+                .max((p1, p2) -> Integer.compare(p1.getAge(), p2.getAge()));
+        Optional<String> maybeName = maybeOldest.map(Person::getName);
+        return maybeName.orElse("NONE");
     }
 
 
     //--- e) Generate/Iterate ---//
     static List<Integer> powGreaterThan(int base, int minValue, int count) {
-        return null;
+        return IntStream
+                .iterate(1, i -> i * base)
+                .filter(i -> i >= minValue)
+                .limit(count)
+                .boxed()
+                .collect(Collectors.toList());
     }
 
     static List<Integer> allSquareNumbersBetween(int minValue, int maxValue) {
-        return null;
+        return IntStream
+                .range((int) Math.ceil(Math.sqrt(minValue)), (int) Math.sqrt(maxValue) + 1)
+                .map(i -> i * i)
+                .boxed()
+                .collect(Collectors.toList());
     }
 
 
     //--- f) Grouping collectors ---//
     static Map<HairColor, List<Person>> groupedByHairColor(List<Person> persons) {
-        return null;
+        return persons.stream()
+                .collect(Collectors.groupingBy(Person::getHairColor));
     }
 
     //OPTIONAL
     static Map<String, Long> countChars(String text) {
-        return null;
+        String[] chars = text.trim().split("");
+        return Arrays.stream(chars)
+                .collect(Collectors.groupingBy(s -> s, Collectors.counting()));
     }
 
 
     //--- g) Flat map ---//
     //OPTIONAL
     static List<Integer> toFlatList(int[][] array) {
-        return null;
+        return Arrays.stream(array)
+                .flatMapToInt(s -> Arrays.stream(s))
+                .boxed()
+                .collect(Collectors.toList());
     }
 
 

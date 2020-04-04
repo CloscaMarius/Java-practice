@@ -1,15 +1,20 @@
 package teme.w08_streams.ex4_person_registry;
 
+import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 class PersonsRegistryWithStreams implements PersonsRegistry {
 
     /**
      * Ok not to use streams for this one
      */
+
+    Set<Person> persons = new HashSet<>();
+
     @Override
     public void register(Person p) {
-        //TODO
+        persons.add(p);
     }
 
     /**
@@ -17,7 +22,7 @@ class PersonsRegistryWithStreams implements PersonsRegistry {
      */
     @Override
     public void unregister(int cnp) {
-        //TODO
+        persons.removeIf(p -> p.getCnp() == cnp);
     }
 
     /**
@@ -25,8 +30,8 @@ class PersonsRegistryWithStreams implements PersonsRegistry {
      */
     @Override
     public int count() {
-        //TODO
-        return -1;
+        //return persons.size();
+        return (int) persons.stream().count();
     }
 
     /**
@@ -34,7 +39,11 @@ class PersonsRegistryWithStreams implements PersonsRegistry {
      */
     @Override
     public Person findByCnp(int cnp) {
-        //TODO
+        for (Person p : persons) {
+            if (p.getCnp() == cnp) {
+                return p;
+            }
+        }
         return null;
     }
 
@@ -43,40 +52,124 @@ class PersonsRegistryWithStreams implements PersonsRegistry {
      */
     @Override
     public Set<Integer> cnps() {
-        //TODO
-        return null;
+        /*Set<Integer> newSetCnps = new HashSet<>();
+                for (Person p : persons) {
+                    newSetCnps.add(p.getCnp());
+                }
+                return newSetCnps;*/
+
+        return persons.stream()
+                .map(p -> p.getCnp())
+                .collect(Collectors.toSet());
     }
 
     //--- These should be done using streams operations! ---//
 
     @Override
     public Set<String> uniqueNames() {
-        //TODO
-        return null;
+        //Set<String> newSetUniqueNames = new HashSet<>();
+        //        for (Person p : persons) {
+        //            newSetUniqueNames.add(p.getName());
+        //        }
+        //        return newSetUniqueNames;
+
+        return persons.stream()
+                .map(p -> p.getName())
+                .collect(Collectors.toSet());
+
     }
 
     @Override
     public Set<Person> findByName(String name) {
-        //TODO
-        return null;
+        //Set<Person> personsName = new HashSet<>();
+        //        for (Person p : persons) {
+        //            if (p.getName().equalsIgnoreCase(name)) {
+        //                personsName.add(p);
+        //            }
+        //        }
+        //        return personsName;
+
+        return persons.stream()
+                .filter(p -> p.getName().equalsIgnoreCase(name))
+                .collect(Collectors.toSet());
     }
 
     @Override
     public double averageAge() {
-        //TODO
-        return -1;
+        //if (persons.size() > 0) {
+        //            double nrOfPersons = persons.size();
+        //            double sum = 0;
+        //            for (Person p : persons) {
+        //                sum += p.getAge();
+        //            }
+        //            return sum / nrOfPersons;
+        //        }
+        //        return 0;
+
+        if (persons.size() > 0) {
+            double nrOfPersons = persons.stream().count();
+            double sum = persons.stream()
+                    .map(p -> p.getAge())
+                    .reduce(0, (a, b) -> a + b);
+            return sum / nrOfPersons;
+        }
+        return 0;
     }
 
     @Override
     public double adultsPercentage() {
-        //TODO
-        return -1;
+        // if (persons.size() > 0) {
+        //            double nrOfPersons = persons.size();
+        //            double nrOfAdults = 0;
+        //            for (Person p : persons) {
+        //                if (p.getAge() >= 18) {
+        //                    nrOfAdults++;
+        //                }
+        //            }
+        //            return nrOfAdults / nrOfPersons * 100;
+        //        }
+        //        return 0;
+
+        if (persons.size() > 0) {
+            double nrOfPersons = persons.stream().count();
+            double nrOfAdults = persons.stream()
+                    .filter(p -> p.getAge() >= 18).count();
+
+            return nrOfAdults / nrOfPersons * 100;
+        }
+        return 0;
     }
 
     @Override
     public double adultsWhoVotedPercentage() {
-        //TODO
-        return -1;
+        //if (persons.size() > 0) {
+        //            Set<Person> newPersons = new HashSet<>();
+        //            double nrOfAdults = 0;
+        //            double nrOfAdultsVoted = 0;
+        //            for (Person p : persons) {
+        //                if (p.getAge() >= 18) {
+        //                    nrOfAdults++;
+        //                    newPersons.add(p);
+        //                }
+        //            }
+        //            for (Person p : newPersons) {
+        //                if (p.isHasVoted()) {
+        //                    nrOfAdultsVoted++;
+        //                }
+        //            }
+        //            return nrOfAdultsVoted / nrOfAdults * 100;
+        //        }
+        //        return 0;
+
+        if (persons.size() > 0) {
+            double nrOfAdults = persons.stream()
+                    .filter(p -> p.getAge() >= 18).count();
+            double nrOfAdultsVoted = persons.stream()
+                    .filter(p -> p.isHasVoted()).count();
+
+            return nrOfAdultsVoted / nrOfAdults * 100;
+        }
+        return 0;
     }
 
 

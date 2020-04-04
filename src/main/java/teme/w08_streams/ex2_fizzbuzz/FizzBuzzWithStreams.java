@@ -1,5 +1,7 @@
 package teme.w08_streams.ex2_fizzbuzz;
 
+import java.util.stream.IntStream;
+
 class FizzBuzzWithStreams {
 
     /**
@@ -8,8 +10,15 @@ class FizzBuzzWithStreams {
      * Then use this method in both imperative and stream methods below.
      */
     static String toFizzBuzz(int i) {
-        //TODO
-        return "bzzz?";
+        if ((i % 3) == 0 && (i % 5) == 0) {
+            return "fizzbuzz";
+        } else if ((i % 3) == 0) {
+            return "fizz";
+        } else if (i % 5 == 0) {
+            return "buzz";
+        } else {
+            return String.valueOf(i);
+        }
     }
 
     /**
@@ -18,7 +27,9 @@ class FizzBuzzWithStreams {
      * Iterative version, may use loops, etc..
      */
     static void fizzBuzzImperative(int n) {
-        //TODO
+        for (int i = 1; i <= n; i++) {
+            System.out.println(toFizzBuzz(i));
+        }
     }
 
     /**
@@ -29,7 +40,9 @@ class FizzBuzzWithStreams {
      * Hint: read about IntStream.rangeClosed() method, and streams of primitives..
      */
     static void fizzBuzzWithStreams(int n) {
-        //TODO
+        IntStream.rangeClosed(1, n)
+                .mapToObj(FizzBuzzWithStreams::toFizzBuzz)
+                .forEach(System.out::println);
     }
 
     /**

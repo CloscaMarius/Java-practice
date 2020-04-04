@@ -1,49 +1,66 @@
 package teme.w08_streams.ex3_trader;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 class TraderOperations {
 
     static List<Transaction> transactionFromYearSortedByValue(List<Transaction> transactions, int year) {
-        //TODO
-        return null;
+        return transactions.stream()
+                .filter(x -> x.getYear() == year)
+                .sorted(Comparator.comparingInt(Transaction::getValue))
+                .collect(Collectors.toList());
+
     }
 
     static Set<String> distinctTraderCities(List<Transaction> trans) {
-        //TODO
-        return null;
+
+        return trans.stream()
+                .map(x -> x.getTrader())
+                .map(x -> x.getCity())
+                .collect(Collectors.toSet());
+
     }
 
     static List<Trader> tradersFromCitySortedByNameDescending(List<Transaction> trans, String city) {
-        //TODO
-        return null;
+
+        return trans.stream()
+                .map(x -> x.getTrader())
+                .filter(x -> x.getCity().equals(city))
+                .distinct()
+                .sorted(Comparator.comparing(Trader::getName).reversed())
+                .collect(Collectors.toList());
     }
 
     static String tradersNamesSorted(List<Transaction> trans) {
-        //TODO
-        return null;
+        return trans.stream()
+                .map(x -> x.getTrader())
+                .map(x -> x.getName())
+                .sorted()
+                .distinct()
+                .collect(Collectors.joining(","));
+
     }
 
     static boolean isAnyTraderFromCity(List<Transaction> trans, String city) {
-        //TODO
-        return false;
+        return trans.stream()
+                .map(x -> x.getTrader())
+                .anyMatch(x -> x.getCity().equals(city));
+
     }
 
     static void relocateTraders(List<Transaction> trans, String fromCity, String toCity) {
-        //TODO
+        trans.stream()
+                .filter(x -> x.getTrader().getCity().equals(fromCity))
+                .forEach(x -> x.getTrader().setCity(toCity));
     }
 
     static Optional<Transaction> transactionWithHighestValue(List<Transaction> trans) {
-        //TODO
-        return null;
+        return trans.stream().max(Comparator.comparing(Transaction::getValue));
     }
 
     static Optional<Transaction> transactionWithLowestValue(List<Transaction> trans) {
-        //TODO
-        return null;
+        return trans.stream().min(Comparator.comparing(Transaction::getValue));
     }
 
 
