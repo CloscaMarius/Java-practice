@@ -1,5 +1,6 @@
 package teme.w09_exceptions_files.ex3_persons_csv;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,6 +16,9 @@ class PersonsCsvDemo {
         String inputFile = baseFolder + "persons.csv";
         String outputFile = baseFolder + "persons_sorted.csv";
 
+        //just check file path is correct:
+        System.out.println("Input file full path: " + new File(inputFile).getAbsolutePath());
+        System.out.println("Input file exits?: " + new File(inputFile).exists());
 
         List<Person> persons = PersonCsvUtils.loadFromCsvFile(inputFile);
         System.out.println("\nLoaded " + persons.size() + " valid persons from file " + inputFile + ":");
