@@ -102,7 +102,7 @@ class TraderOperations {
         System.out.println("\ntraders from Cambridge (sorted descending by name):");
         tradersFromCitySortedByNameDescending(trans, "Cambridge").forEach(System.out::println);
 
-        // - Return a string of all traders’ names sorted alphabetically and separated by comma
+        // - Return a string of all traders' names sorted alphabetically and separated by comma
         System.out.println("\nnames of all traders: " + tradersNamesSorted(trans));
 
 
@@ -116,7 +116,7 @@ class TraderOperations {
         trans.forEach(System.out::println);
 
 
-        // - What’s the highest value in all transactions? What’s the transaction with the lowest value?
+        // - What's the highest value in all transactions? What's the transaction with the lowest value?
         Optional<Transaction> highestValueTrans = transactionWithHighestValue(trans);
         System.out.println("\nhighestValueTrans: " + highestValueTrans);
 
