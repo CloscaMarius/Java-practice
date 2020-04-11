@@ -3,15 +3,16 @@ package teme.w09_exceptions_files.ex3_persons_csv;
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static java.io.File.separator;
 
 class PersonsCsvDemo {
     public static void main(String[] args) {
 
-        String baseFolder = tryToGetParentFolderOfThisClass();
+        //String baseFolder = tryToGetParentFolderOfThisClass();
         //if the line above doesn't work correctly, you may have to manually set a base path like this:
-        //String baseFolder = "src/main/java/teme/w09_exceptions/ex3_persons_csv/"; //relative path, linux/mac style but ok also on windows (accepts '/' as separator)
+        String baseFolder = "C:\\Users\\Marius\\Desktop\\teme_marius_closca\\src\\main\\java\\teme\\w09_exceptions_files\\ex3_persons_csv\\"; //relative path, linux/mac style but ok also on windows (accepts '/' as separator)
 
         String inputFile = baseFolder + "persons.csv";
         String outputFile = baseFolder + "persons_sorted.csv";
@@ -38,9 +39,12 @@ class PersonsCsvDemo {
     private static void findHighestPerson(List<Person> persons) {
         System.out.println("\nSearching for highest person:");
 
-        //TODO!
 
-        System.out.println("Highest person: ??");
+        Optional<Person> highestPerson = persons.stream()
+                .sorted((p1, p2) -> Integer.compare(p2.getHeight(), p1.getHeight()))
+                .findFirst();
+
+        System.out.println("Highest person:" + highestPerson);
     }
 
     /**

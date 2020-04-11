@@ -1,18 +1,43 @@
 package teme.w09_exceptions_files.ex0_string_to_int;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 class StringToInt {
 
-    static int toPositiveInt(String value) {
-        //TODO!
-        return -1;
+    static int toPositiveIntCalls;
+
+    static int toPositiveIntUnchecked(String value) throws ArrayIndexOutOfBoundsException,
+            NullPointerException,
+            NumberFormatException {
+        return Integer.parseInt(value);
+    }
+
+    static int toPositiveInt(String value) throws NegativeNumberException, NotANumberException {
+        try {
+            int intValue = Integer.parseInt(value);
+            if (intValue < 0) {
+                throw new NegativeNumberException(value);
+            }
+            return intValue;
+        } catch (NumberFormatException e) {
+            throw new NotANumberException(value);
+        } finally {
+            toPositiveIntCalls++;
+        }
     }
 
     static List<Integer> toPositiveInt(List<String> values) {
-        //TODO!
-        return null;
+        List<Integer> list = new ArrayList<>();
+        for (String value : values) {
+            try {
+                list.add(toPositiveInt(value));
+            } catch (NotANumberException | NegativeNumberException e) {
+                System.err.println("The value " + value + " is not a positive integer. Skipping...");
+            }
+        }
+        return list;
     }
 
 

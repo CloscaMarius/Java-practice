@@ -1,21 +1,40 @@
 package teme.w09_exceptions_files.ex2_reactor;
 
+import java.util.Random;
+
 class Reactor {
 
+    private int power = 0;
+    private int criticalPower;
+
     Reactor(int criticalPower) {
-        //TODO
+        this.criticalPower = criticalPower;
     }
 
     int getPower() {
-        //TODO
-        return -1;
+        return this.power;
     }
 
     void increase() throws ReactorCriticalException {
-        //TODO
+        int min = 1;
+        int max = 100;
+        if (this.criticalPower > this.power) {
+            this.power += new Random().nextInt(max - min + 1) + min;
+            if (this.criticalPower < this.power) {
+                throw new ReactorCriticalException();
+            }
+        }
     }
 
     void decrease() {
-        //TODO
+        int min = 1;
+        int max = 100;
+
+        if (power >= 0) {
+            this.power -= new Random().nextInt(max - min + 1) + min;
+            if (power < 0) {
+                this.power = 0;
+            }
+        }
     }
 }

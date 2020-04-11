@@ -2,21 +2,23 @@ package teme.w09_exceptions_files.ex2_reactor;
 
 class PowerPlant {
 
+    private int targetPower;
+    private boolean alarmTriggered = false;
+
     PowerPlant(int targetPower) {
-        //TODO
+        this.targetPower = targetPower;
     }
 
     int getTargetPower() {
-        //TODO
-        return -1;
+        return this.targetPower;
     }
 
     void soundAlarm() {
-        //TODO
+        alarmTriggered = true;
+        System.out.println("Alarm!");
     }
 
     boolean hasAlarmSounded() {
-        //TODO
-        return false;
+        return alarmTriggered;
     }
 }
