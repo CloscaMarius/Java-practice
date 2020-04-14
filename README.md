@@ -39,7 +39,7 @@ __1. Setup a SSH key__:
 __2. Clone the project to your machine__:
 
   - make a local copy of it by, either by using the 'git clone' command, like:    
-     `git clone git@gitlab.com:wantsome/java/seria10/teme/teme_alin_hazapariu`
+     `git clone git@gitlab.com:wantsome/java/java-basic/seria10/teme/teme_alin_hazapariu`
     
   - OR: by using IntelliJ: _'File \ New \ Project from Version Control'_, 
     then select 'Git', and enter the URL of your repo (similar to above)
