@@ -10,8 +10,8 @@ REST=`echo $REPO | awk -F/java-basic/ '{print $2}'`
 CLASS_NAME=`echo $REST | awk -F/ '{print $1}'`
 echo "Origin: $REPO -> base: '$BASE', class: '$CLASS_NAME'"
 
-#If auto-detection above didn't work, may need to manuall set these:
-#1) Choose the common base prefixe (git@ if you have ssh key configured, https otherwise)
+#If auto-detection above didn't work, may need to manually set these:
+#1) Choose the common base prefix (git@ if you have ssh key configured, https otherwise)
 #BASE=git@gitlab.com:wantsome/java/java-basic
 #BASE=https://gitlab.com/wantsome/java/java-basic
 #2) Set the name of the specific class (like 'seria7', 'seria8')
