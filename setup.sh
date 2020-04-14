@@ -5,8 +5,8 @@
 
 #trying to autodetect location of other repos based on current git url:
 REPO="$(git remote get-url origin)"
-BASE=`echo $REPO | awk -F/java/ '{print $1}'`/java
-REST=`echo $REPO | awk -F/java/ '{print $2}'`
+BASE=`echo $REPO | awk -F/java-basic/ '{print $1}'`/java-basic
+REST=`echo $REPO | awk -F/java-basic/ '{print $2}'`
 CLASS_NAME=`echo $REST | awk -F/ '{print $1}'`
 echo "Origin: $REPO -> base: '$BASE', class: '$CLASS_NAME'"
 
