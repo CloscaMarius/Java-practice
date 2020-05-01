@@ -33,3 +33,25 @@ select count() suppliers_count from suppliers;
 -- TODO: YOUR SOLUTION BELOW
 ----------------------------------------------
 
+--1.--
+SELECT DISTINCT city
+FROM suppliers s
+where s.state = 'California'
+ORDER BY city DESC;
+
+--2.--
+SELECT *
+FROM suppliers
+order by
+state ASC,
+city ASC ;
+
+--3.--
+SELECT COUNT(state) NrOfSuppliers
+FROM suppliers;
+
+--4.--
+SELECT state, COUNT() NrOfSuppliers
+FROM suppliers
+group by state
+ORDER by state ASC;

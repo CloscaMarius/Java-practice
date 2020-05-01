@@ -44,3 +44,34 @@ select * from
 -- TODO: YOUR SOLUTION BELOW
 ----------------------------------------------
 
+--1.--
+SELECT customers.customer_id as customer, customers.last_name, orders.order_date
+FROM customers
+INNER JOIN orders
+ON customer = orders.customer_id
+ORDER BY customer DESC;
+
+--2.--
+SELECT first_name, last_name
+FROM customers
+WHERE EXISTS
+  ( SELECT orders.customer_id
+    FROM orders
+    Order by order_date DESC )
+limit 1;
+
+--3.--
+SELECT DISTINCT favorite_website, customer_id, COUNT()
+FROM customers
+WHERE EXISTS (SELECT orders.customer_id
+FROM orders WHERE orders.customer_id = customers.customer_id
+AND strftime('%Y-%m', order_date) = '2018-04')
+group by customer_id;
+
+--4.--
+SELECT customers.customer_id, customers.last_name
+FROM customers
+INNER JOIN orders
+ON customers.customer_id=orders.customer_id
+GROUP BY customers.last_name
+ORDER BY customers.last_name ASC, customers.customer_id DESC;

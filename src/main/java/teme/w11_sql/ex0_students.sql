@@ -35,6 +35,21 @@ pragma foreign_keys = on; --make sure FK checks are on
 
 -- TODO!
 
+create table students( id integer not null primary key,
+    name text unique not null,
+    email text
+);
+
+create table courses( id integer not null primary key,
+    description text unique not null,
+    duration integer
+);
+
+create table grades( course_id references courses (id) not null,
+    stud_id references students(id) not null,
+    grade integer not null
+);
+
 
 -----------------------------------------------
 -- Once you created the 3 tables above correctly, the queries below should
@@ -76,18 +91,72 @@ select * from grades;
 -----------------------------------------------
 
 --a) Display all student grades, showing columns: course description, student name, grade; to be sorted by: course (ASC) + grade (DESC)
-
+SELECT
+	courses.description as course,
+	students.name as student,
+	grade
+FROM
+	grades
+INNER JOIN courses ON
+	grades.course_id = courses.id
+INNER JOIN students ON
+	grades.stud_id = students.id
+ORDER BY
+	description ASC,
+	grade DESC;
 
 --b) Display the list of course (the description of each) with the statistics: the minimum, maximum and average grade per course
-
+select
+	c.description as course,
+	min(g.grade) as min_grade,
+	max(g.grade) as max_grade,
+	avg(g.grade) as average_grade
+from
+	courses c
+join grades g on
+	c.id = g.course_id
+group by
+	c.id;
 
 --c) Display the list of students (the name for each) and the number of courses followed by each student
+SELECT
+	name as student_name,
+	COUNT() as number_of_courses
+FROM
+	students
+JOIN grades ON
+	grades.stud_id = students.id
+group BY students.name;
 
+--d) Display all the Java related courses (which contain 'Java' in their description)
+SELECT * FROM courses WHERE description LIKE '%java%';
 
---d) Display the total count of students following Java related courses (which contain 'Java' in their description)
+--e) Display the name and average grade for the student with the greatest average grade
+-- (based on grades from all his followed courses)
+SELECT
+	s.name,
+	avg(g.grade) as average_grade
+FROM
+	students s
+JOIN grades g ON
+	g.stud_id = s.id
+GROUP BY
+	s.name
+order by average_grade desc
+limit 1;
 
-
---e) Display the name and average grade for the student with the greatest average grade (based on grades from all his followed courses)
-
-
---f) Update the grades of all students following the Java related courses, by increasing current grade by +1, but without getting them past 10
+--f) Update the grades of all students following the Java related courses,
+-- by increasing current grade by +1, but without getting them past 10
+UPDATE
+	grades
+set
+	grade = grade + 1
+where
+	grade < 10
+	and course_id in (
+	select
+		id
+	from
+		courses
+	where
+		lower(description) like '%java%')
