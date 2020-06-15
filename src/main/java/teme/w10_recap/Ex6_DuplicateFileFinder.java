@@ -12,7 +12,7 @@ public class Ex6_DuplicateFileFinder {
 
     public static void main(String[] args) {
 
-        String folderPath = "C:\\Users\\Marius\\Desktop\\New folder";
+        String folderPath = ".";
 
         //getDuplicateFilesByName(folderPath);
 

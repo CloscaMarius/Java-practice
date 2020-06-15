@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 
 public class TransactionsDaoTest {
 
-    private static final String TEST_DB_FILE = "src\\main\\resources\\proiect\\budget_tracker_test.db";
+    private static final String TEST_DB_FILE = "budget_tracker_test.db";
 
 
     private static final List<TransactionsDto> sampleTransactions = Arrays.asList(

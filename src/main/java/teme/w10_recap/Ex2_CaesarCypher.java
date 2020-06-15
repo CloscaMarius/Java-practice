@@ -11,8 +11,8 @@ public class Ex2_CaesarCypher {
         Scanner scanner = new Scanner(System.in);
         //String pathname = scanner.nextLine();
 
-        String pathname = "C:\\Users\\Marius\\Desktop\\teme_marius_closca\\clasa\\TODO_de_discutat.txt";
-        String encryptedFilePath = "C:\\Users\\Marius\\Desktop\\teme_marius_closca\\clasa\\TODO_de_discutat_encrypted.txt";
+        String pathname = "clasa/TODO_de_discutat.txt";
+        String encryptedFilePath = "clasa/TODO_de_discutat_encrypted.txt";
 
         CaesarCypherFiles.encryptFile(pathname, 11);
 

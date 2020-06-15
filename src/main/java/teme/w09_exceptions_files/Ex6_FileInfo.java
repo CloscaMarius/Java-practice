@@ -7,7 +7,7 @@ class Ex6_FileInfo {
 
     public static void main(String[] args) {
 
-        File file = new File("C:\\Users\\Marius\\Desktop\\teme_marius_closca\\src\\main\\java\\teme\\w09_exceptions_files\\ex3_persons_csv\\persons_sorted.csv");
+        File file = new File("src/main/java/teme/w09_exceptions_files/ex3_persons_csv/persons_sorted.csv");
 
         System.out.println("File exists: " + file.exists());
 

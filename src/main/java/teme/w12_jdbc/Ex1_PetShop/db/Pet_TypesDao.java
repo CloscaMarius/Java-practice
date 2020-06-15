@@ -68,7 +68,7 @@ public class Pet_TypesDao {
                 " VALUES(?,?)";
         try (Connection c = DbManager.getConnection();
              PreparedStatement p = c.prepareStatement(sql)) {
-            File file = new File("C:\\Users\\Marius\\Desktop\\teme_marius_closca\\src\\main\\java\\teme\\w12_jdbc\\Ex1_PetShop\\dto\\petsType.csv");
+            File file = new File("src/main/java/teme/w12_jdbc/Ex1_PetShop/dto/petsType.csv");
 
             try (Scanner scanner = new Scanner(file)) {
                 scanner.useDelimiter(",");

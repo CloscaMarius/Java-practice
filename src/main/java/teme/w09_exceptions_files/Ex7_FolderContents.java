@@ -9,7 +9,7 @@ class Ex7_FolderContents {
 
     public static void main(String[] args) {
 
-        String dirName = "C:\\Users\\Marius\\Desktop\\teme_marius_closca\\src\\main\\java\\teme\\w09_exceptions_files";
+        String dirName = "src/main/java/teme/w09_exceptions_files";
 
 
         try {

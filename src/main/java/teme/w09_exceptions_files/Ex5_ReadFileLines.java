@@ -15,7 +15,7 @@ class Ex5_ReadFileLines {
 
     public static void main(String[] args) {
 
-        String numeCompletFisier = "C:\\Users\\Marius\\Desktop\\teme_marius_closca\\curs\\README.md";
+        String numeCompletFisier = "curs/README.md";
 
         File fisier = new File(numeCompletFisier);
         System.out.println("Fisierul exista pe disk? " + fisier.exists());

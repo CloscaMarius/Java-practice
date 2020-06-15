@@ -121,7 +121,7 @@ public class PetsDao {
                 + FLD_PERSON_ID + ")" + " VALUES(?,?,?,?,?)";
         try (Connection c = DbManager.getConnection();
              PreparedStatement p = c.prepareStatement(sql)) {
-            File file = new File("C:\\Users\\Marius\\Desktop\\teme_marius_closca\\src\\main\\java\\teme\\w12_jdbc\\Ex1_PetShop\\dto\\pets.csv");
+            File file = new File("src/main/java/teme/w12_jdbc/Ex1_PetShop/dto/pets.csv");
 
             try (Scanner scanner = new Scanner(file)) {
 

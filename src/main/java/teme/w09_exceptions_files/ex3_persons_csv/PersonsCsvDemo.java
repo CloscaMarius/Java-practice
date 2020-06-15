@@ -12,7 +12,7 @@ class PersonsCsvDemo {
 
         //String baseFolder = tryToGetParentFolderOfThisClass();
         //if the line above doesn't work correctly, you may have to manually set a base path like this:
-        String baseFolder = "C:\\Users\\Marius\\Desktop\\teme_marius_closca\\src\\main\\java\\teme\\w09_exceptions_files\\ex3_persons_csv\\"; //relative path, linux/mac style but ok also on windows (accepts '/' as separator)
+        String baseFolder = "src/main/java/teme/w09_exceptions_files/ex3_persons_csv/"; //relative path, linux/mac style but ok also on windows (accepts '/' as separator)
 
         String inputFile = baseFolder + "persons.csv";
         String outputFile = baseFolder + "persons_sorted.csv";

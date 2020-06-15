@@ -16,7 +16,7 @@ public class Ex5_VoteValidation {
 
     public static void main(String[] args) {
         String votingLocation = "iasi_sectia1";
-        String fileName = "VoteValidation\\input\\" + votingLocation + ".csv";
+        String fileName = "VoteValidation/input/" + votingLocation + ".csv";
         Person Adrian = new Person("Adrian Grigore", "1900309090034", "2012-07-10 14:58:00");
         Person Mircea = new Person("Mircea Matei", "1900309090034", "2012-07-11 14:58:00");
         Person Andrei = new Person("Andrei Mihalcea", "1970902090034", "2019-07-10 14:58:00");
@@ -46,7 +46,7 @@ public class Ex5_VoteValidation {
             File inputFile = new File(fileName);
 
 
-            if (inputFile.renameTo(new File("VoteValidation\\input_archive\\" + inputFile.getName()))) {
+            if (inputFile.renameTo(new File("VoteValidation/input_archive/" + inputFile.getName()))) {
                 System.out.println("File is moved successful!");
             } else {
                 System.out.println("File is failed to move!");
@@ -58,13 +58,13 @@ public class Ex5_VoteValidation {
     }
 
     private static void createFolders() {
-        File input = new File("VoteValidation\\input");
+        File input = new File("VoteValidation/input");
 
-        File inputArchive = new File("VoteValidation\\input_archive");
+        File inputArchive = new File("VoteValidation/input_archive");
 
-        File outputValid = new File("VoteValidation\\output_valid");
+        File outputValid = new File("VoteValidation/output_valid");
 
-        File outputInvalid = new File("VoteValidation\\output_invalid");
+        File outputInvalid = new File("VoteValidation/output_invalid");
 
         File[] files = new File[]{input, inputArchive, outputInvalid, outputValid};
         for (File f : files) {
@@ -81,7 +81,7 @@ public class Ex5_VoteValidation {
 
     private static void createInputFile(String fileName) {
         String votingLocation = fileName.substring(fileName.lastIndexOf("input") + 6, fileName.lastIndexOf(".csv"));
-        File file = new File("VoteValidation\\input\\" + votingLocation + ".csv");
+        File file = new File("VoteValidation/input/" + votingLocation + ".csv");
         try {
             if (file.createNewFile()) {
                 System.out.println("File created: " + file.getName());
@@ -95,7 +95,7 @@ public class Ex5_VoteValidation {
 
     private static void createAndWriteValidOutputFile(String fileName, List<Person> persons) {
         String out = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss'.csv'").format(new Date());
-        File file = new File("VoteValidation\\output_valid\\valid_" + out);
+        File file = new File("VoteValidation/output_valid/valid_" + out);
         try {
             if (file.createNewFile()) {
                 System.out.println("File created: " + file.getName());
@@ -111,7 +111,7 @@ public class Ex5_VoteValidation {
 
     private static void createAndWriteInvalidOutputFile(String fileName, List<Person> persons) {
         String out = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss'.csv'").format(new Date());
-        File file = new File("VoteValidation\\output_invalid\\invalid_" + out);
+        File file = new File("VoteValidation/output_invalid/invalid_" + out);
         try {
             if (file.createNewFile()) {
                 System.out.println("File created: " + file.getName());
