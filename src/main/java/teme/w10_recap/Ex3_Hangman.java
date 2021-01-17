@@ -137,7 +137,7 @@ public class Ex3_Hangman {
 
     private static List<String> words() {
         List<String> words = new ArrayList<>();
-        String pathname = "curs/enunturi_teme/resources/words_ro_small.txt";
+        String pathname = "src/main/resources/cuvinte.txt";
         File file = new File(pathname);
         Scanner scanner = null;
         try {
