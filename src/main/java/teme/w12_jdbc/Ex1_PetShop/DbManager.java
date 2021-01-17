@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class DbManager {
 
-    private static String dbFile = "w12_notes_petshop.db";
+    private static String dbFile = "w12_petshop.db";
 
     public static void setDbFile(String newDbFile) {
         dbFile = newDbFile;
