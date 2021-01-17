@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public class NotesRunner {
     public static void main(String[] args) {
+        DbInitService.deleteAllTables();
         DbInitService.createMissingTables();
 
         TodoDao dao = new TodoDao();

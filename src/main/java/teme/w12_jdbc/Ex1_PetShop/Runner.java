@@ -15,8 +15,9 @@ import java.util.Optional;
 
 public class Runner {
     public static void main(String[] args) {
+        DbInitService.deleteAllTables();
         DbInitService.createMissingTables();
-        //DbInitService.deleteAllTables();
+
 
         PersonsDao dao = new PersonsDao();
         System.out.println(dao.getAll());
@@ -31,7 +32,11 @@ public class Runner {
         List<PersonsDto> allPersons = PersonsDao.getAll();
 
         Pet_TypesDao petsType = new Pet_TypesDao();
+        Pet_TypesDto petTypeDto = new Pet_TypesDto(5,"Drever");
+        petsType.insert(petTypeDto);
         petsType.insertTypeFromCsv();
+
+
         List<Pet_TypesDto> allTypes = Pet_TypesDao.getAll();
         PetsDao petsDao = new PetsDao();
         petsDao.insertPetsFromCsv(allPersons, allTypes);
